@@ -7,8 +7,6 @@ import com.nicefish.model.User;
 public interface UserService {
 	public int insert(User user);
 	
-	public boolean createUser(User user);
-	
 	public User findById(String id);
 	
 	public List<User> findAll();
@@ -18,5 +16,7 @@ public interface UserService {
 	public User findByCode(String code);
 	
 	public int update(User user);
+	
+	public User loginName(String userName);
 
 }

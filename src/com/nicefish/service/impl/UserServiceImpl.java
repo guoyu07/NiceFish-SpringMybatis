@@ -14,6 +14,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserMapper userMapper;
+	
 	@Override
 	public User findById(String id) {
 		return userMapper.selectByPrimaryKey(id);
@@ -43,14 +44,15 @@ public class UserServiceImpl implements UserService{
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 
-	@Override
-	public boolean createUser(User user) {
-		return false;
-	}
-
 
 	@Override
 	public int insert(User user) {
 		return userMapper.insertSelective(user);
+	}
+
+
+	@Override
+	public User loginName(String userName) {
+		return userMapper.selectByUserName(userName);
 	}
 }

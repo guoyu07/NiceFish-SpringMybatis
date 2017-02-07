@@ -10,4 +10,6 @@ public interface UserMapper extends BaseMapper<User, String>{
 	List<User> findAll();
 	
 	User findByCode(String code);
+	
+	User selectByUserName(String userName);
 }

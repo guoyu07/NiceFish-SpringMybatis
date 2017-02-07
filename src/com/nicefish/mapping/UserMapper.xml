@@ -184,14 +184,19 @@
 	    </set>
 	    where USER_ID = #{userId,jdbcType=VARCHAR}
     </update>
-    <!-- 查询所有 -->
+    
     <select id="findAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" /> from user
     </select>
-    <!-- 根据激活码Code查询用户信息 -->
+    
     <select id="findByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" /> from user where CODE = #{code,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" /> from user where USER_NAME = #{userName,jdbcType=VARCHAR}
     </select>
 </mapper>
