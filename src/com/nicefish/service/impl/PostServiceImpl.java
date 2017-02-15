@@ -1,6 +1,8 @@
 package com.nicefish.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,14 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public int delete(String id) {
 		return postMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Post> findByTitle(String key) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		if(key!=null&&!key.equals(null)){
+			map.put("key", key);
+		}
+		return postMapper.findByTitle(map);
 	}
 }
