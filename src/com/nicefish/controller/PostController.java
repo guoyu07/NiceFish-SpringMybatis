@@ -49,8 +49,8 @@ public class PostController {
     }
 	
 	@RequestMapping(value = "/findByKey", method = RequestMethod.GET)
-    @ResponseBody
-    public String postFindKey(HttpSession session,String key) throws Exception {
+	@ResponseBody
+	public String postFindKey(HttpSession session,String key) throws Exception {
         List<Post> list = postService.findByTitle(BaseEncode.encoding(key));
         return objectMapper.writeValueAsString(list);
     } 
