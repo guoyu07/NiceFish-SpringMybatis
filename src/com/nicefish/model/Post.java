@@ -10,32 +10,54 @@ public class Post implements Serializable{
 	 */
 	private static final long serialVersionUID = 780466231377828632L;
 
+	//文章列表主键id
 	private String postId;
 
+	//文章标题
     private String postTitle;
 
+    //发布时间
     private Date postTime;
 
+    //文章的类型，0原创1翻译
     private Integer postType;
 
+    //最后修改时间
     private Date lastModifyTime;
 
+    //浏览
     private Integer readTimes;
 
+    //喜欢
     private Integer likedTimes;
 
+    //收藏
     private Integer collectTimes;
 
+    //用户id
     private String userId;
 
+    //用户登录时的账号
     private String userName;
 
+    //是否可评论，0不可1可
     private Integer enableComment;
 
+    /**
+     * 状态：默认4
+     * 	1、已删除
+     *	2、已归档，已归档的内容禁止评论，文章不可删除
+     *	3、草稿
+     *	4、已发布
+     *	5、精华-->精华文章不可删除
+     *	6、已推至首页
+     */
     private Integer status;
 
+    //中文昵称
     private String nickName;
 
+    //文章内容
     private String postContent;
 
     public String getPostId() {
