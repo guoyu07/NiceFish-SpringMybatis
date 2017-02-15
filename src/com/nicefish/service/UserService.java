@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.nicefish.model.User;
 
-
 public interface UserService {
 	
 	public int insert(User model);
@@ -14,5 +13,9 @@ public interface UserService {
 	public List<User> findAll();
 	
 	public int delete(String id);
+	
+	public User findByCode(String code);
+	
+	public int update(User user);
 
 }
