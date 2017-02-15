@@ -97,7 +97,7 @@ public class UserController extends BaseController{
 		user.setUserName("123456");
 		user.setPassword("123456");
 		user.setQq("1334996110");
-		user.setEmail("1334996110@qq.com");
+		user.setEmail("17691008810@163.com");
 		user.setCellPhone("18368921130");
 		user.setUserDesc("发送邮件测试");
 		user.setType(1);
