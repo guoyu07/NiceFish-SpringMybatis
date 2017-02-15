@@ -144,4 +144,16 @@
     </set>
     where COMMENT_ID = #{commentId,jdbcType=VARCHAR}
   </update>
+  
+  <!-- 查询当前帖子的评论列表 -->
+  <select id="findByPostId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    where POST_ID = #{postId,jdbcType=VARCHAR}
+    and STATUS != 0
+  </select>	
+  <!-- 查询当前帖子的评论列表 -->
 </mapper>
