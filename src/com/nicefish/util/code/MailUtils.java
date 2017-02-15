@@ -34,8 +34,12 @@ public class MailUtils {
 		props.setProperty("mail.transport.protocol", "smtp");
 		// 设置发信邮箱的smtp地址
 		props.setProperty("mail.smtp.host", "smtp.163.com");
+		// 端口号     
+		props.setProperty("mail.smtp.port", "465");
 		// 验证
 		props.setProperty("mail.smtp.auth", "true");
+		// 设置是否使用ssl安全连接  ---一般都使用
+		props.setProperty("mail.smtp.ssl.enable", "true");
 		//便于调试
 		props.put("mail.debug", "true");
 		Session session = Session.getDefaultInstance(props, new Authenticator(){
