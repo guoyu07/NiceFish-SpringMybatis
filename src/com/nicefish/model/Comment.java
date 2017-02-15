@@ -10,26 +10,37 @@ public class Comment implements Serializable{
 	 */
 	private static final long serialVersionUID = 6195619727960332246L;
 
+	//评论主键id
 	private String commentId;
 
+	//
     private String pId;
 
+    //用户id
     private String userId;
 
+    //用户登录时的账号
     private String userName;
 
+    //中文昵称
     private String nickName;
 
+    //对于从网络上抓取到的评论，此字段表示评论者名字。
     private String commentName;
 
+    //评论者的IP地址
     private String commentIp;
 
+    //评论时间
     private Date commentTime;
 
+    //帖子id
     private String postId;
 
+    //评论状态：0：已删除；1：已发布；2:优质评论；
     private Integer status;
 
+    //评论内容
     private String content;
 
     public String getCommentId() {
