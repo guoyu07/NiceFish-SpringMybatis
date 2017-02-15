@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.nicefish.model.User;
 import com.nicefish.service.UserService;
 import com.nicefish.util.base.UUIDUtil;
+import com.nicefish.util.code.MailUtils;
 import com.nicefish.util.page.Result;
 
 /**
@@ -63,25 +67,42 @@ public class UserController extends BaseController{
         return userService.findById(id);
     }
 	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	@ResponseBody
+	public Result<String> userAdd(User user) throws AddressException, MessagingException{
+		Result<String> result = new Result<String>();
+		user.setCode(UUIDUtil.generate()+UUIDUtil.generate());
+		int flag = userService.insert(user);
+		if(flag > 0){
+			MailUtils.sendMail(user.getEmail(),user.getCode());
+			result.setStatus(flag);
+			result.setMsg("注册成功,请查看邮件！");
+			return result;
+		}
+		result.setStatus(-1);
+		result.setMsg("注册失败！");
+		return result;
+	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public Result<String> userAdd() {
+	public Result<String> userAddTest(Model model) throws AddressException, MessagingException {
 		Result<String> result = new Result<String>();
 		User user = new User();
 		user.setUserId(UUIDUtil.generate());
-		user.setUserNo("Test1");
-		user.setRealName("测试");
-		user.setNickName("Lord");
-		user.seteName("Test");
+		user.setCode(UUIDUtil.generate()+UUIDUtil.generate());
+		user.setRealName("邮箱测试");
+		user.setNickName("Email");
+		user.seteName("sendEmail");
 		user.setUserName("123456");
 		user.setPassword("123456");
 		user.setQq("1334996110");
-		user.setWeixin("wsc1334996110");
+		user.setEmail("1334996110@qq.com");
 		user.setCellPhone("18368921130");
-		user.setUserDesc("测试用户");
+		user.setUserDesc("发送邮件测试");
 		user.setType(1);
 		int flag = userService.insert(user);
+		MailUtils.sendMail(user.getEmail(),user.getCode());
 		result.setStatus(flag);
 		result.setMsg("succesful");
 		return result;
