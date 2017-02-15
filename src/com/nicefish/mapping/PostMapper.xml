@@ -186,4 +186,18 @@
     where STATUS != 1 and STATUS != 3
   </select>
   <!-- 文章列表 -->
+  
+  <!-- 根据title搜索帖子 -->
+  <select id="findByTitle" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from post
+    where STATUS != 1 and STATUS != 3
+    <if test="key != null and key!=''">
+	and (POST_TITLE like CONCAT('%',#{key,jdbcType=VARCHAR},'%'))
+   	</if>
+  </select>
+  <!-- 根据title搜索帖子 -->
 </mapper>
