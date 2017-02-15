@@ -9,33 +9,46 @@ public class User implements Serializable{
 	 * 序列号
 	 */
 	private static final long serialVersionUID = 1246820666030204536L;
-
+	
+	//主键id
 	private String userId;
 
-    private String userNo;
+	//邮件激活码
+    private String code;
 
+    //中文真实姓名
     private String realName;
 
+    //中文昵称
     private String nickName;
 
+    //英文名
     private String eName;
 
+    //登录时的账号
     private String userName;
 
+    //密码
     private String password;
 
+    //QQ账号
     private String qq;
 
-    private String weixin;
+    //邮箱
+    private String email;
 
+    //手机号
     private String cellPhone;
 
+    //用户简介
     private String userDesc;
 
     private String upId;
 
+    //0未激活 1已激活 2已禁用 
     private Integer status;
 
+    //用户类型
     private Integer type;
 
     private Date joinTime;
@@ -50,12 +63,12 @@ public class User implements Serializable{
         this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getUserNo() {
-        return userNo;
+    public String getCode() {
+        return code;
     }
 
-    public void setUserNo(String userNo) {
-        this.userNo = userNo == null ? null : userNo.trim();
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
     }
 
     public String getRealName() {
@@ -106,12 +119,12 @@ public class User implements Serializable{
         this.qq = qq == null ? null : qq.trim();
     }
 
-    public String getWeixin() {
-        return weixin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setWeixin(String weixin) {
-        this.weixin = weixin == null ? null : weixin.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getCellPhone() {
@@ -169,4 +182,5 @@ public class User implements Serializable{
     public void setLeaveTime(Date leaveTime) {
         this.leaveTime = leaveTime;
     }
+
 }
