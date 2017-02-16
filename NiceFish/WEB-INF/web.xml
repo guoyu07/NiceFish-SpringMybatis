@@ -4,6 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  
   <display-name></display-name>
   <context-param>
   	<param-name>contextConfigLocation</param-name>
@@ -32,6 +33,7 @@
   <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
+  
   <servlet>
     <description>spring mvc servlet</description>
     <servlet-name>springMvc</servlet-name>
@@ -45,7 +47,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>springMvc</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>*.js</url-pattern>
+      <url-pattern>*.css</url-pattern>
+      <url-pattern>*.html</url-pattern>
+      <url-pattern>*.png</url-pattern>
+      <url-pattern>*.gif</url-pattern>
+      <url-pattern>*.jpg</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>15</session-timeout>
