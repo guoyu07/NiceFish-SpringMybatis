@@ -7,14 +7,8 @@ import com.nicefish.service.PostService;
 
 @Controller
 public class PostController {
-	private PostService postService;
-
-	public PostService getPostService() {
-		return postService;
-	}
 	
 	@Autowired
-	public void setPostService(PostService postService) {
-		this.postService = postService;
-	}
+	private PostService postService;
+
 }

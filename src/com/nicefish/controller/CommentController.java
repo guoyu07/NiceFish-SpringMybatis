@@ -7,14 +7,8 @@ import com.nicefish.service.CommentService;
 
 @Controller
 public class CommentController {
-	private CommentService commentService;
-
-	public CommentService getCommentService() {
-		return commentService;
-	}
 	
 	@Autowired
-	public void setCommentService(CommentService commentService) {
-		this.commentService = commentService;
-	}
+	private CommentService commentService;
+
 }

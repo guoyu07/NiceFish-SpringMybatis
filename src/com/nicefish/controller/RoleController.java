@@ -7,14 +7,8 @@ import com.nicefish.service.RoleService;
 
 @Controller
 public class RoleController {
-	private RoleService roleService;
-
-	public RoleService getRoleService() {
-		return roleService;
-	}
 	
 	@Autowired
-	public void setRoleService(RoleService roleService) {
-		this.roleService = roleService;
-	}
+	private RoleService roleService;
+
 }
