@@ -47,6 +47,18 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
 		<property name="mapperLocations" value="classpath:com/nicefish/mapping/*.xml" />
+		<!-- 分页拦截器 -->
+		<property name="plugins">
+          <array>
+           <bean class="com.github.pagehelper.PageHelper">
+            <property name="properties">
+              <value>
+                dialect=hsqldb
+              </value>
+            </property>
+           </bean>
+          </array>
+        </property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
