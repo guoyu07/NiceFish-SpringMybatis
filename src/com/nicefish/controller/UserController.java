@@ -18,7 +18,6 @@ import com.github.pagehelper.PageHelper;
 import com.nicefish.model.User;
 import com.nicefish.service.UserService;
 import com.nicefish.util.base.UUIDUtil;
-import com.nicefish.util.page.PageSize;
 import com.nicefish.util.page.Result;
 
 /**
@@ -29,8 +28,10 @@ import com.nicefish.util.page.Result;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
-	
+public class UserController extends BaseController{
+	//后面会抽到数据库系统配置表里面去
+	private final static int pageSize=20;
+		
 	@Autowired
 	private UserService userService;
 	
@@ -45,7 +46,7 @@ public class UserController {
 	@ResponseBody
 	public String listPage(@PathVariable int pageIndex,Model model) throws Exception{
 		//开启PageHelper
-		Page<?> page = PageHelper.startPage(pageIndex,PageSize.TEN.getSize(),true);
+		Page<?> page = PageHelper.startPage(pageIndex,pageSize,true);
 		//获得查询结果列表数据
 		List<User> list = userService.findAll();
 		Map<String, Object> map = new HashMap<String, Object>();

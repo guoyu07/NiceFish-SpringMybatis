@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.nicefish.service.PermissionService;
 
 @Controller
-public class PermissionController {
+public class PermissionController extends BaseController{
 	
 	@Autowired
 	private PermissionService permissionService;

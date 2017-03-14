@@ -23,7 +23,7 @@ import com.nicefish.util.page.Result;
 
 @Controller
 @RequestMapping("/comments")
-public class CommentController {
+public class CommentController extends BaseController{
 	
 	private final static ObjectMapper objectMapper = new ObjectMapper();
 	

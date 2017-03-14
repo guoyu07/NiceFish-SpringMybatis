@@ -45,4 +45,14 @@ public class PostServiceImpl implements PostService {
 		}
 		return postMapper.findByTitle(map);
 	}
+
+	@Override
+	public int selectCount() {
+		return postMapper.selectCount();
+	}
+
+	@Override
+	public List<Post> selectByPage(int beginRow, int pageSize) {
+		return postMapper.selectByPage(beginRow, pageSize);
+	}
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.nicefish.service.RoleService;
 
 @Controller
-public class RoleController {
+public class RoleController extends BaseController{
 	
 	@Autowired
 	private RoleService roleService;

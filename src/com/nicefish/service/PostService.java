@@ -15,4 +15,8 @@ public interface PostService {
 	public int delete(String id);
 	
 	public List<Post> findByTitle(String key);
+	
+	public int selectCount();
+	
+	public List<Post> selectByPage(int beginRow,int pageSize);
 }
