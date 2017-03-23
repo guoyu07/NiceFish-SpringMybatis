@@ -5,6 +5,7 @@ import java.util.List;
 import com.nicefish.model.User;
 
 public interface UserService {
+	public int insert(User user);
 	
 	public boolean createUser(User user);
 	
