@@ -1,7 +1,6 @@
 package com.nicefish.util.consts;
 
 /**
- * 
  * Session存储键值
  * @author WangShiCong
  */

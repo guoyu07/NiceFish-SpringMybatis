@@ -7,7 +7,7 @@ import com.nicefish.model.User;
 
 public interface UserService {
 	
-	public int insert(User model);
+	public boolean createUser(User user);
 	
 	public User findById(String id);
 	

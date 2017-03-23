@@ -15,13 +15,6 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 
-	
-	@Override
-	public int insert(User model) {
-		return userMapper.insertSelective(model);
-	}
-
-
 	@Override
 	public User findById(String id) {
 		return userMapper.selectByPrimaryKey(id);
@@ -38,5 +31,12 @@ public class UserServiceImpl implements UserService{
 	public int delete(String id) {
 		return userMapper.deleteByPrimaryKey(id);
 	}
-	
+
+
+	@Override
+	public boolean createUser(User user) {
+		//校验邮箱
+		//数据入库
+		return false;
+	}
 }

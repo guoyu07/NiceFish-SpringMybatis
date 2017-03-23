@@ -17,14 +17,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.nicefish.model.User;
 import com.nicefish.service.UserService;
-import com.nicefish.util.base.UUIDUtil;
 import com.nicefish.util.page.Result;
-
-/**
- * 请注意此类仅为测试样例
- * @author Administrator
- *
- */
 
 @Controller
 @RequestMapping("/users")
@@ -56,38 +49,11 @@ public class UserController extends BaseController{
 		return objectMapper.writeValueAsString(map);
     }
 	
-	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public User userFindOne(@PathVariable("id")String id) {
         return userService.findById(id);
     }
-	
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@ResponseBody
-	public Result<String> userAdd() {
-		Result<String> result = new Result<String>();
-		User user = new User();
-		user.setUserId(UUIDUtil.generate());
-		user.setUserNo("Test1");
-		user.setRealName("测试");
-		user.setNickName("Lord");
-		user.seteName("Test");
-		user.setUserName("123456");
-		user.setPassword("123456");
-		user.setQq("1334996110");
-		user.setWeixin("wsc1334996110");
-		user.setCellPhone("18368921130");
-		user.setUserDesc("测试用户");
-		user.setType(1);
-		int flag = userService.insert(user);
-		result.setStatus(flag);
-		result.setMsg("succesful");
-		return result;
-	}
-	
-	
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	@ResponseBody
