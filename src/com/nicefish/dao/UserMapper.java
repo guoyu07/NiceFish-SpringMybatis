@@ -8,4 +8,6 @@ import com.nicefish.util.base.BaseMapper;
 public interface UserMapper extends BaseMapper<User, String>{
     
 	List<User> findAll();
+	
+	User findByCode(String code);
 }

@@ -34,9 +34,20 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
+	public User findByCode(String code) {
+		return userMapper.findByCode(code);
+	}
+
+
+	@Override
+	public int update(User user) {
+		return userMapper.updateByPrimaryKeySelective(user);
+	}
+
+	@Override
 	public boolean createUser(User user) {
-		//鏍￠獙閭
-		//鏁版嵁鍏ュ簱
+		//校验邮箱
+		//数据入库
 		return false;
 	}
 }

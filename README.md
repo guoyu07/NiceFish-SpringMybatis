@@ -15,3 +15,5 @@
 ![视频教程截图](docs/imgs/1.png)
 
 - 然后你应该懂怎么做了
+
+修改user表结构，请重写导入数据库,sql文件为nicefish_new.sql。
