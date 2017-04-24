@@ -3,13 +3,11 @@ package com.nicefish.controller;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
-import com.nicefish.utils.ConstSessionName;
-import com.nicefish.utils.Result;
+import com.nicefish.utils.SessionConsts;
 import com.nicefish.vo.VOUserLogin;
 import com.nicefish.vo.VOUserRegister;
 
@@ -40,21 +37,21 @@ public class AccessController extends BaseController {
 		if(!userDB.getPassword().equals(voUserLogin.getPassword())){
 			return this.ajaxFailureResponse("用户名或者密码错误");
 		}
-		session.setAttribute(ConstSessionName.UserInfo, voUserLogin);
+		session.setAttribute(SessionConsts.UserInfo, voUserLogin);
 		return this.ajaxSuccessResponse();
     }
 	
 	@RequestMapping(value = "/logout/{userId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> logout(@PathVariable String userId,HttpSession session) throws Exception{
-		session.removeAttribute(ConstSessionName.UserInfo);
+		session.removeAttribute(SessionConsts.UserInfo);
+		session.removeAttribute(SessionConsts.ImageVertifyCode);
 		return this.ajaxSuccessResponse();
     }
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> register(@RequestBody VOUserRegister voUserRegister) throws Exception{
-		//检查用户名或者邮件是否已经存在
+	public Map<String,Object> register(@RequestBody VOUserRegister voUserRegister,HttpSession session) throws Exception{
 		POUser poUser=userService.findByUserName(voUserRegister.getUserName());
 		if(null!=poUser){
 			return this.ajaxSuccessResponse("已经存在相同的用户名");
@@ -62,6 +59,12 @@ public class AccessController extends BaseController {
 		poUser=userService.findByEmail(voUserRegister.getEmail());
 		if(null!=poUser){
 			return this.ajaxSuccessResponse("此邮箱已经被注册");
+		}
+		voUserRegister.getvCode();
+		
+		Object vCodeSession=session.getAttribute(SessionConsts.ImageVertifyCode);
+		if(null==vCodeSession||!voUserRegister.getvCode().equals(vCodeSession.toString())){
+			return this.ajaxSuccessResponse("验证码错误，请重新获取验证码");
 		}
 		
 		poUser=new POUser();
@@ -73,32 +76,4 @@ public class AccessController extends BaseController {
 		userService.insert(poUser);
 		return this.ajaxSuccessResponse();
     }
-	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ResponseBody
-	public Result<String> getActive(HttpServletRequest request,Model model) throws Exception{
-		Result<String> result = new Result<String>();
-		
-		//接受激活码
-		String code = request.getParameter("code");
-		
-		//根据激活码查询用户
-//		User user = userService.findByCode(code);
-//		if(StringUtils.isNotBlank(code)&&StringUtils.isNotEmpty(code)){
-//			if(user != null){
-//				user.setStatus(1);//1已激活
-//				user.setCode("");//清空激活码,只激活一次
-//				int flag = userService.update(user);
-//				if(flag > 0){
-//					result.setStatus(flag);
-//					result.setMsg("激活成功，请登录！");
-//					return result;
-//				}
-//				
-//			}
-//			result.setStatus(-1);
-//			result.setMsg("你的激活码有误，请重新激活！");
-//		}
-		return result;
-	}
 }

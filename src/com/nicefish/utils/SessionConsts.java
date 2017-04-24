@@ -4,9 +4,9 @@ package com.nicefish.utils;
  * Session存储键值
  * @author WangShiCong
  */
-public class ConstSessionName {
+public class SessionConsts {
 	
-	private ConstSessionName(){
+	private SessionConsts(){
 	}
 	
 	/**

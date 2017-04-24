@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.nicefish.service.VercodeService;
-import com.nicefish.utils.ConstSessionName;
+import com.nicefish.utils.SessionConsts;
 
 /**
  * 验证码
@@ -92,7 +92,7 @@ public class VercodeServiceImpl implements VercodeService {
 	    // 将四位数字的验证码保存到Session中。
 	    
 	    HttpSession session = req.getSession();
-	    session.setAttribute(ConstSessionName.ImageVertifyCode, randomCode.toString());
+	    session.setAttribute(SessionConsts.ImageVertifyCode, randomCode.toString());
 
 	    // 禁止图像缓存。
 	    resp.setHeader("Pragma", "no-cache");

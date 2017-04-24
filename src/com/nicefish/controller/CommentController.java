@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicefish.po.POComment;
 import com.nicefish.po.POUser;
 import com.nicefish.service.CommentService;
-import com.nicefish.utils.ConstSessionName;
+import com.nicefish.utils.SessionConsts;
 import com.nicefish.utils.IPUtil;
 import com.nicefish.utils.Result;
 
@@ -41,7 +41,7 @@ public class CommentController extends BaseController{
 	@ResponseBody
 	public Result<String> CommentAdd(POComment comment,HttpServletRequest request,HttpSession session){
 		Result<String> result = new Result<String>();
-		POUser user = (POUser)session.getAttribute(ConstSessionName.UserInfo);
+		POUser user = (POUser)session.getAttribute(SessionConsts.UserInfo);
 		comment.setCommentId(UUID.randomUUID().toString());
 		comment.setUserId(user.getUserId());
 		comment.setUserName(user.getUserName());
