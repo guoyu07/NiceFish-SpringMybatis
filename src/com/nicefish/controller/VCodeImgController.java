@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,6 +19,8 @@ import com.nicefish.utils.SessionConsts;
  * 专门用来获取图片验证码
  * @author zhangxf10
  */
+@Controller
+@RequestMapping("/vcode")
 public class VCodeImgController{
 	private static Random random = new Random();
 
@@ -31,7 +34,7 @@ public class VCodeImgController{
 
 	private static int stringNum = 4;	//随机产生字符数量
 
-	@RequestMapping(value = "/getVCodeImg", method = RequestMethod.GET)
+	@RequestMapping(value = "/getImg", method = RequestMethod.GET)
 	public void getRandcode(HttpServletResponse response,HttpSession session) {
 		//BufferedImage类是具有缓冲区的Image类,Image类是用于描述图像信息的类
 		BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_BGR);
