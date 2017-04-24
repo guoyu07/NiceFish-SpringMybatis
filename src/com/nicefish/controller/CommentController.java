@@ -16,10 +16,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicefish.model.Comment;
 import com.nicefish.model.User;
 import com.nicefish.service.CommentService;
-import com.nicefish.util.base.IPUtil;
-import com.nicefish.util.base.UUIDUtil;
-import com.nicefish.util.consts.ConstSessionName;
-import com.nicefish.util.page.Result;
+import com.nicefish.utils.ConstSessionName;
+import com.nicefish.utils.IPUtil;
+import com.nicefish.utils.Result;
+import com.nicefish.utils.UUIDUtil;
 
 @Controller
 @RequestMapping("/comments")

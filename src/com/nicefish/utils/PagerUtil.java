@@ -1,7 +1,7 @@
-package com.nicefish.util.page;
+package com.nicefish.utils;
 
 
-public class PageUtil {
+public class PagerUtil {
 	/**
 	 * 计算分页时的起始行号
 	 * @param currentPage

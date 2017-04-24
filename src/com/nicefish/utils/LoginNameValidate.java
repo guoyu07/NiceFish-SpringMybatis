@@ -1,6 +1,5 @@
-package com.nicefish.util.validate;
+package com.nicefish.utils;
 
-import com.nicefish.util.page.Result;
 
 /**
  * 登录名验证

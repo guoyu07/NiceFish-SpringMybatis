@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.nicefish.service.VercodeService;
-import com.nicefish.util.consts.ConstSessionName;
+import com.nicefish.utils.ConstSessionName;
 
 /**
  * 验证码

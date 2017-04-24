@@ -1,4 +1,4 @@
-package com.nicefish.util.consts;
+package com.nicefish.utils;
 
 /**
  * Session存储键值

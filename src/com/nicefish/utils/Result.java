@@ -1,4 +1,4 @@
-package com.nicefish.util.page;
+package com.nicefish.utils;
 
 import java.io.Serializable;
 

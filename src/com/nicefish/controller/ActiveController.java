@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nicefish.model.User;
 import com.nicefish.service.UserService;
-import com.nicefish.util.page.Result;
+import com.nicefish.utils.Result;
 
 @Controller
 @RequestMapping("/active")

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nicefish.model.User;
 import com.nicefish.service.UserService;
-import com.nicefish.util.base.UUIDUtil;
-import com.nicefish.util.code.MailUtils;
-import com.nicefish.util.consts.ConstSessionName;
+import com.nicefish.utils.ConstSessionName;
+import com.nicefish.utils.EMailUtil;
+import com.nicefish.utils.UUIDUtil;
 
 @Controller
 @RequestMapping("/access")
@@ -53,7 +53,7 @@ public class AccessController extends BaseController {
 		user.setCode(UUIDUtil.generate()+UUIDUtil.generate());
 		int flag = userService.insert(user);
 		if(flag > 0){
-			MailUtils.sendMail(user.getEmail(),user.getCode());
+			EMailUtil.sendMail(user.getEmail(),user.getCode());
 			return this.ajaxSuccessResponse();
 		}
 		return this.ajaxFailureResponse();

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.nicefish.model.Post;
-import com.nicefish.util.base.BaseMapper;
+import com.nicefish.utils.BaseMapper;
 
 public interface PostMapper extends BaseMapper<Post, String>{
     

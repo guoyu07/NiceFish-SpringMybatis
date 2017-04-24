@@ -1,8 +1,6 @@
-package com.nicefish.util.validate;
+package com.nicefish.utils;
 
 import javax.servlet.http.HttpSession;
-
-import com.nicefish.util.page.Result;
 
 /**
  * 验证码校验

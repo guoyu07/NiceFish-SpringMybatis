@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.nicefish.model.User;
-import com.nicefish.util.consts.ConstSessionName;
+import com.nicefish.utils.ConstSessionName;
 
 /**
  * @Description 用户信息请求过滤

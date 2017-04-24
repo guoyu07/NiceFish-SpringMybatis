@@ -1,4 +1,4 @@
-package com.nicefish.util.code;
+package com.nicefish.utils;
 
 import java.util.Date;
 import java.util.Properties;
@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage.RecipientType;
  * 邮件发送工具类
  * @author Lord
  */
-public class MailUtils {
+public class EMailUtil {
 	
 	/**
 	 * 发送邮件的方法

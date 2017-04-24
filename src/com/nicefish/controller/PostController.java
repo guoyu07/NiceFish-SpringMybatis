@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicefish.model.Post;
 import com.nicefish.service.PostService;
-import com.nicefish.util.base.BaseEncode;
-import com.nicefish.util.page.PageUtil;
+import com.nicefish.utils.BaseEncode;
+import com.nicefish.utils.PagerUtil;
 
 @Controller
 @RequestMapping("/posts")
@@ -35,10 +35,10 @@ public class PostController extends BaseController{
 	@ResponseBody
 	public Map<String,Object> getPosts(@PathVariable int pageIndex) throws Exception{
 		int totalRecords=postService.selectCount();
-		int startRow=PageUtil.calcStartRow(pageIndex,pageSize);
+		int startRow=PagerUtil.calcStartRow(pageIndex,pageSize);
 		
 		List<Post> list = postService.selectByPage(startRow,pageSize);
-		int totalPages=PageUtil.calcPages(totalRecords, pageSize);
+		int totalPages=PagerUtil.calcPages(totalRecords, pageSize);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("totalRecords", totalRecords);

@@ -1,4 +1,4 @@
-package com.nicefish.util.base;
+package com.nicefish.utils;
 
 import java.io.Serializable;
 
