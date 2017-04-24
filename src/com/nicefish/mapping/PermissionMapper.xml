@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nicefish.dao.PermissionMapper">
-    <resultMap id="BaseResultMap" type="com.nicefish.model.Permission">
+<mapper namespace="com.nicefish.dao.POPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.po.POPermission">
         <id column="PERMISSION_ID" property="permissionId" jdbcType="VARCHAR" />
         <result column="PERMISSION_CODE" property="permissionCode" jdbcType="VARCHAR" />
         <result column="PERMISSION_DESC" property="permissionDesc" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from permission where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
     </delete>
-    <insert id="insertSelective" parameterType="com.nicefish.model.Permission">
+    <insert id="insertSelective" parameterType="com.nicefish.po.POPermission">
         insert into permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="permissionId != null">
@@ -41,7 +41,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.model.Permission">
+    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.po.POPermission">
         update permission
         <set>
             <if test="permissionCode != null">

@@ -2,15 +2,15 @@ package com.nicefish.service;
 
 import java.util.List;
 
-import com.nicefish.model.Comment;
+import com.nicefish.po.POComment;
 
 public interface CommentService {
 	
-	public int insert(Comment model);
+	public int insert(POComment model);
 	
-	public Comment findById(String id);
+	public POComment findById(String id);
 	
 	public int delete(String id);
 	
-	public List<Comment> findByPostId(String postId);
+	public List<POComment> findByPostId(String postId);
 }

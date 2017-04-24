@@ -1,8 +1,8 @@
-package com.nicefish.model;
+package com.nicefish.po;
 
 import java.io.Serializable;
 
-public class UserRole implements Serializable{
+public class POUserRole implements Serializable{
     
 	/**
 	 * 序列号

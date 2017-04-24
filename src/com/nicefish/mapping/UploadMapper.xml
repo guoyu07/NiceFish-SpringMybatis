@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nicefish.dao.UploadMapper">
-    <resultMap id="BaseResultMap" type="com.nicefish.model.Upload">
+<mapper namespace="com.nicefish.dao.POUploadMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.po.POUpload">
         <id column="UP_ID" property="upId" jdbcType="VARCHAR" />
         <result column="UP_TIME" property="upTime" jdbcType="TIMESTAMP" />
         <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from upload where UP_ID = #{upId,jdbcType=VARCHAR}
     </delete>
-    <insert id="insertSelective" parameterType="com.nicefish.model.Upload">
+    <insert id="insertSelective" parameterType="com.nicefish.po.POUpload">
         insert into upload
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="upId != null">
@@ -97,7 +97,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.model.Upload">
+    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.po.POUpload">
         update upload
         <set>
             <if test="upTime != null">

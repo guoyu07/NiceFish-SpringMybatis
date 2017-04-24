@@ -1,9 +1,9 @@
-package com.nicefish.model;
+package com.nicefish.po;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Upload implements Serializable{
+public class POUpload implements Serializable{
    
 	/**
 	 * 序列号

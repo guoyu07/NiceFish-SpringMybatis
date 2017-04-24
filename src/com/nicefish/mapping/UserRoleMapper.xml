@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nicefish.dao.UserRoleMapper">
-    <resultMap id="BaseResultMap" type="com.nicefish.model.UserRole">
+<mapper namespace="com.nicefish.dao.POUserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.po.POUserRole">
         <id column="ID" property="id" jdbcType="VARCHAR" />
         <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
         <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from user_role where ID = #{id,jdbcType=VARCHAR}
     </delete>
-    <insert id="insertSelective" parameterType="com.nicefish.model.UserRole">
+    <insert id="insertSelective" parameterType="com.nicefish.po.POUserRole">
         insert into user_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -41,7 +41,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.model.UserRole">
+    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.po.POUserRole">
         update user_role
         <set>
             <if test="userId != null">

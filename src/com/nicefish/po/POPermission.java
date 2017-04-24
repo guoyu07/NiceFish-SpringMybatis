@@ -1,8 +1,8 @@
-package com.nicefish.model;
+package com.nicefish.po;
 
 import java.io.Serializable;
 
-public class Permission implements Serializable{
+public class POPermission implements Serializable{
     
 	/**
 	 * 序列号

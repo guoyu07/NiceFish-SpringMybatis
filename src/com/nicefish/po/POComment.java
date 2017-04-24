@@ -1,9 +1,9 @@
-package com.nicefish.model;
+package com.nicefish.po;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Comment implements Serializable{
+public class POComment implements Serializable{
     
 	/**
 	 * 序列号

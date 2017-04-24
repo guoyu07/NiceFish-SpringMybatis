@@ -2,21 +2,21 @@ package com.nicefish.service;
 
 import java.util.List;
 
-import com.nicefish.model.Post;
+import com.nicefish.po.POPost;
 
 public interface PostService {
 	
-	public int insert(Post model);
+	public int insert(POPost model);
 	
-	public Post findById(String id);
+	public POPost findById(String id);
 	
-	public List<Post> findAll();
+	public List<POPost> findAll();
 	
 	public int delete(String id);
 	
-	public List<Post> findByTitle(String key);
+	public List<POPost> findByTitle(String key);
 	
 	public int selectCount();
 	
-	public List<Post> selectByPage(int beginRow,int pageSize);
+	public List<POPost> selectByPage(int beginRow,int pageSize);
 }

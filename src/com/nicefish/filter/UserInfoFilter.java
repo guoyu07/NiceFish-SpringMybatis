@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.nicefish.model.User;
+import com.nicefish.po.POUser;
 import com.nicefish.utils.ConstSessionName;
 
 /**
@@ -31,7 +31,7 @@ public class UserInfoFilter extends OncePerRequestFilter {
 		uri=uri.substring(ctx.length());
 		
 		//从session中获取用户登录者实体
-		User user=(User)request.getSession().getAttribute(ConstSessionName.UserInfo);
+		POUser user=(POUser)request.getSession().getAttribute(ConstSessionName.UserInfo);
 		
 		if(user !=null ){
             filterChain.doFilter(request, response);

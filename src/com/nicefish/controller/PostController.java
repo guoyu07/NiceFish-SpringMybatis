@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nicefish.model.Post;
+import com.nicefish.po.POPost;
 import com.nicefish.service.PostService;
 import com.nicefish.utils.BaseEncode;
 import com.nicefish.utils.PagerUtil;
@@ -37,7 +37,7 @@ public class PostController extends BaseController{
 		int totalRecords=postService.selectCount();
 		int startRow=PagerUtil.calcStartRow(pageIndex,pageSize);
 		
-		List<Post> list = postService.selectByPage(startRow,pageSize);
+		List<POPost> list = postService.selectByPage(startRow,pageSize);
 		int totalPages=PagerUtil.calcPages(totalRecords, pageSize);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -51,20 +51,20 @@ public class PostController extends BaseController{
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Post getPostById(@PathVariable("id")String id) {
+	public POPost getPostById(@PathVariable("id")String id) {
         return postService.findById(id);
     }
 	
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> newPost(@RequestBody Post post) {
+	public Map<String,Object> newPost(@RequestBody POPost post) {
         return this.ajaxSuccessResponse();
     }
 	
 	@RequestMapping(value = "/findbykey", method = RequestMethod.GET)
 	@ResponseBody
 	public String findPostByKey(HttpSession session,String key) throws Exception {
-        List<Post> list = postService.findByTitle(BaseEncode.encoding(key));
+        List<POPost> list = postService.findByTitle(BaseEncode.encoding(key));
         return objectMapper.writeValueAsString(list);
     }
 }

@@ -2,21 +2,23 @@ package com.nicefish.service;
 
 import java.util.List;
 
-import com.nicefish.model.User;
+import com.nicefish.po.POUser;
 
 public interface UserService {
-	public int insert(User user);
-	
-	public User findById(String id);
-	
-	public List<User> findAll();
-	
+	public int insert(POUser user);
+
+	public POUser findById(String id);
+
+	public POUser findByCode(String code);
+
+	public POUser findByUserName(String userName);
+
+	public POUser findByEmail(String email);
+
+	public List<POUser> findAll();
+
 	public int delete(String id);
-	
-	public User findByCode(String code);
-	
-	public int update(User user);
-	
-	public User loginName(String userName);
+
+	public int update(POUser user);
 
 }

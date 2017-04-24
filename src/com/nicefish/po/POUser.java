@@ -1,20 +1,22 @@
-package com.nicefish.model;
+package com.nicefish.po;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable{
-    
+public class POUser implements Serializable{
 	/**
 	 * 序列号
 	 */
-	private static final long serialVersionUID = 1246820666030204536L;
-	
+	private static final long serialVersionUID = 3073402778789652870L;
+
 	//主键id
 	private String userId;
 
-	//邮件激活码
-    private String code;
+    //登录时的账号
+    private String userName;
+
+    //密码
+    private String password;
 
     //中文真实姓名
     private String realName;
@@ -25,14 +27,11 @@ public class User implements Serializable{
     //英文名
     private String eName;
 
-    //登录时的账号
-    private String userName;
-
-    //密码
-    private String password;
-
     //QQ账号
     private String qq;
+    
+    //微信账号
+    private String weChat;
 
     //邮箱
     private String email;
@@ -48,12 +47,9 @@ public class User implements Serializable{
     //0未激活 1已激活 2已禁用 
     private Integer status;
 
-    //用户类型
-    private Integer type;
+    private Date regTime;
 
-    private Date joinTime;
-
-    private Date leaveTime;
+    private Date lastLoginTime;
 
     public String getUserId() {
         return userId;
@@ -62,15 +58,7 @@ public class User implements Serializable{
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
     }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
+    
     public String getRealName() {
         return realName;
     }
@@ -159,28 +147,27 @@ public class User implements Serializable{
         this.status = status;
     }
 
-    public Integer getType() {
-        return type;
-    }
+	public Date getRegTime() {
+		return regTime;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	public void setRegTime(Date regTime) {
+		this.regTime = regTime;
+	}
 
-    public Date getJoinTime() {
-        return joinTime;
-    }
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
 
-    public void setJoinTime(Date joinTime) {
-        this.joinTime = joinTime;
-    }
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 
-    public Date getLeaveTime() {
-        return leaveTime;
-    }
+	public String getWeChat() {
+		return weChat;
+	}
 
-    public void setLeaveTime(Date leaveTime) {
-        this.leaveTime = leaveTime;
-    }
-
+	public void setWeChat(String weChat) {
+		this.weChat = weChat;
+	}
 }

@@ -7,28 +7,28 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nicefish.dao.PostMapper;
-import com.nicefish.model.Post;
+import com.nicefish.dao.POPostMapper;
+import com.nicefish.po.POPost;
 import com.nicefish.service.PostService;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
 
 	@Autowired
-	private PostMapper postMapper;
+	private POPostMapper postMapper;
 
 	@Override
-	public int insert(Post model) {
+	public int insert(POPost model) {
 		return postMapper.insertSelective(model);
 	}
 	
 	@Override
-	public Post findById(String id) {
+	public POPost findById(String id) {
 		return postMapper.selectByPrimaryKey(id);
 	}
 	
 	@Override
-	public List<Post> findAll() {
+	public List<POPost> findAll() {
 		return postMapper.findAll();
 	}
 	
@@ -38,7 +38,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> findByTitle(String key) {
+	public List<POPost> findByTitle(String key) {
 		Map<String,Object> map=new HashMap<String,Object>();
 		if(key!=null&&!key.equals(null)){
 			map.put("key", key);
@@ -52,7 +52,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> selectByPage(int beginRow, int pageSize) {
+	public List<POPost> selectByPage(int beginRow, int pageSize) {
 		return postMapper.selectByPage(beginRow, pageSize);
 	}
 }

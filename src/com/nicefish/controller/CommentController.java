@@ -1,6 +1,7 @@
 package com.nicefish.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nicefish.model.Comment;
-import com.nicefish.model.User;
+import com.nicefish.po.POComment;
+import com.nicefish.po.POUser;
 import com.nicefish.service.CommentService;
 import com.nicefish.utils.ConstSessionName;
 import com.nicefish.utils.IPUtil;
 import com.nicefish.utils.Result;
-import com.nicefish.utils.UUIDUtil;
 
 @Controller
 @RequestMapping("/comments")
@@ -33,16 +33,16 @@ public class CommentController extends BaseController{
 	@RequestMapping(value = "/postid/{postid}", method = RequestMethod.GET)
 	@ResponseBody
 	public String PostFindByPid(@PathVariable("postid")String postid) throws Exception {
-        List<Comment> list = commentService.findByPostId(postid);
+        List<POComment> list = commentService.findByPostId(postid);
         return objectMapper.writeValueAsString(list);
     }
 	
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
-	public Result<String> CommentAdd(Comment comment,HttpServletRequest request,HttpSession session){
+	public Result<String> CommentAdd(POComment comment,HttpServletRequest request,HttpSession session){
 		Result<String> result = new Result<String>();
-		User user = (User)session.getAttribute(ConstSessionName.UserInfo);
-		comment.setCommentId(UUIDUtil.generate());
+		POUser user = (POUser)session.getAttribute(ConstSessionName.UserInfo);
+		comment.setCommentId(UUID.randomUUID().toString());
 		comment.setUserId(user.getUserId());
 		comment.setUserName(user.getUserName());
 		comment.setNickName(user.getNickName());
