@@ -16,7 +16,7 @@ public interface PostService {
 	
 	public List<POPost> findByTitle(String key);
 	
-	public int selectCount();
+	public String getTotalPages();
 	
-	public List<POPost> selectByPage(int beginRow,int pageSize);
+	public List<POPost> selectPostsByPage(String currentPage);
 }

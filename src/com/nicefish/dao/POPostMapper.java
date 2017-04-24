@@ -14,7 +14,7 @@ public interface POPostMapper extends BaseMapper<POPost, String>{
 	
 	List<POPost> findByTitle(Map<String, Object> map);
 
-	List<POPost> selectByPage(@Param("beginRow")int beginRow,@Param("pageSize")int pageSize);
+	List<POPost> selectByPage(@Param("beginRow")String beginRow,@Param("pageSize")String pageSize);
 
 	int selectCount();
 }

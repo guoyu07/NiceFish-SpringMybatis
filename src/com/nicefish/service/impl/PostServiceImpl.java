@@ -9,11 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.nicefish.dao.POPostMapper;
 import com.nicefish.po.POPost;
+import com.nicefish.po.POSysParam;
 import com.nicefish.service.PostService;
+import com.nicefish.service.SysParamService;
+import com.nicefish.utils.WebUtil;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
-
+	@Autowired
+	private SysParamService sysParamService;
+	
 	@Autowired
 	private POPostMapper postMapper;
 
@@ -47,12 +52,22 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int selectCount() {
-		return postMapper.selectCount();
+	public String getTotalPages() {
+		int totalCount=postMapper.selectCount();
+		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
+		String pageSize=poSysParam.getParamValue();
+		return WebUtil.calcPages(totalCount+"", pageSize);
 	}
 
 	@Override
-	public List<POPost> selectByPage(int beginRow, int pageSize) {
-		return postMapper.selectByPage(beginRow, pageSize);
+	public List<POPost> selectPostsByPage(String currentPage) {
+		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
+		String pageSize=poSysParam.getParamValue();
+		
+		String[] pageParams=WebUtil.parseStartLimit(currentPage,pageSize);
+		String start=pageParams[0];
+		String limit=pageParams[1];
+		
+		return postMapper.selectByPage(start,limit);
 	}
 }

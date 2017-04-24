@@ -18,35 +18,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicefish.po.POPost;
 import com.nicefish.service.PostService;
 import com.nicefish.utils.BaseEncode;
-import com.nicefish.utils.PagerUtil;
 
 @Controller
 @RequestMapping("/posts")
 public class PostController extends BaseController{
-	//后面会抽到数据库系统配置表里面去
-	private final static int pageSize=20;
-
 	private final static ObjectMapper objectMapper = new ObjectMapper();
 	
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping(value = "/getPosts/{pageIndex}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPostListByPage/{currentPage}", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getPosts(@PathVariable int pageIndex) throws Exception{
-		int totalRecords=postService.selectCount();
-		int startRow=PagerUtil.calcStartRow(pageIndex,pageSize);
-		
-		List<POPost> list = postService.selectByPage(startRow,pageSize);
-		int totalPages=PagerUtil.calcPages(totalRecords, pageSize);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("totalRecords", totalRecords);
-		map.put("totalPages", totalPages);
-		map.put("pageSize", pageSize);
-		map.put("currentPage", pageIndex);
-		map.put("list", list);
-		return map;
+	public Map<String,Object> getPostListByPage(@PathVariable int currentPage) throws Exception{
+		List<POPost> poPostList=postService.selectPostsByPage(currentPage+"");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("data", poPostList);
+		return resultMap;
+    }
+	
+	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> getTotalPages() throws Exception{
+		String totalCount=postService.getTotalPages();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("totalCount", totalCount);
+		return resultMap;
     }
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
