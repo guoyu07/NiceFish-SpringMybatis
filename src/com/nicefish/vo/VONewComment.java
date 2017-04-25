@@ -3,6 +3,7 @@ package com.nicefish.vo;
 public class VONewComment {
 	private String content;
 	private String userId;
+	private String postId;
 
 	public String getContent() {
 		return content;
@@ -18,6 +19,14 @@ public class VONewComment {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getPostId() {
+		return postId;
+	}
+
+	public void setPostId(String postId) {
+		this.postId = postId;
 	}
 
 }

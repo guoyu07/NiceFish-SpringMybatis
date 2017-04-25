@@ -26,7 +26,7 @@ public class POPost implements Serializable {
 
 	private Integer likedTimes;
 
-	private Integer collectTimes;
+	private Integer commentTimes;
 
 	private String userId;
 
@@ -105,12 +105,12 @@ public class POPost implements Serializable {
 		this.likedTimes = likedTimes;
 	}
 
-	public Integer getCollectTimes() {
-		return collectTimes;
+	public Integer getCommentTimes() {
+		return commentTimes;
 	}
 
-	public void setCollectTimes(Integer collectTimes) {
-		this.collectTimes = collectTimes;
+	public void setCommentTimes(Integer commentTimes) {
+		this.commentTimes = commentTimes;
 	}
 
 	public String getUserId() {

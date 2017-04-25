@@ -9,7 +9,7 @@
         <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP" />
         <result column="READ_TIMES" property="readTimes" jdbcType="INTEGER" />
         <result column="LIKED_TIMES" property="likedTimes" jdbcType="INTEGER" />
-        <result column="COLLECT_TIMES" property="collectTimes" jdbcType="INTEGER" />
+        <result column="COMMENT_TIMES" property="commentTimes" jdbcType="INTEGER" />
         <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
         <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
         <result column="ENABLE_COMMENT" property="enableComment" jdbcType="INTEGER" />
@@ -20,7 +20,7 @@
         <result column="POST_CONTENT" property="postContent" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
-        POST_ID, POST_TITLE, POST_TIME, POST_TYPE, LAST_MODIFY_TIME, READ_TIMES, LIKED_TIMES, COLLECT_TIMES, USER_ID, USER_NAME, ENABLE_COMMENT, STATUS, NICK_NAME
+        POST_ID, POST_TITLE, POST_TIME, POST_TYPE, LAST_MODIFY_TIME, READ_TIMES, LIKED_TIMES, COMMENT_TIMES, USER_ID, USER_NAME, ENABLE_COMMENT, STATUS, NICK_NAME
     </sql>
     <sql id="Blob_Column_List">
         POST_CONTENT
@@ -57,8 +57,8 @@
             <if test="likedTimes != null">
                 LIKED_TIMES,
             </if>
-            <if test="collectTimes != null">
-                COLLECT_TIMES,
+            <if test="commentTimes != null">
+                COMMENT_TIMES,
             </if>
             <if test="userId != null">
                 USER_ID,
@@ -101,8 +101,8 @@
             <if test="likedTimes != null">
                 #{likedTimes,jdbcType=INTEGER},
             </if>
-            <if test="collectTimes != null">
-                #{collectTimes,jdbcType=INTEGER},
+            <if test="commentTimes != null">
+                #{commentTimes,jdbcType=INTEGER},
             </if>
             <if test="userId != null">
                 #{userId,jdbcType=VARCHAR},
@@ -145,8 +145,8 @@
             <if test="likedTimes != null">
                 LIKED_TIMES = #{likedTimes,jdbcType=INTEGER},
             </if>
-            <if test="collectTimes != null">
-                COLLECT_TIMES = #{collectTimes,jdbcType=INTEGER},
+            <if test="commentTimes != null">
+                COMMENT_TIMES = #{commentTimes,jdbcType=INTEGER},
             </if>
             <if test="userId != null">
                 USER_ID = #{userId,jdbcType=VARCHAR},
