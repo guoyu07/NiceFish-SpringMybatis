@@ -3,131 +3,111 @@ package com.nicefish.po;
 import java.io.Serializable;
 import java.util.Date;
 
-public class POComment implements Serializable{
-    
+public class POComment implements Serializable {
+
 	/**
 	 * 序列号
 	 */
 	private static final long serialVersionUID = 6195619727960332246L;
 
-	//评论主键id
 	private String commentId;
 
-	//
-    private String pId;
+	private String pId;
+	
+	private String postId;
 
-    //用户id
-    private String userId;
+	private String userId;
 
-    //用户登录时的账号
-    private String userName;
+	private String userName;
 
-    //中文昵称
-    private String nickName;
+	private String nickName;
 
-    //对于从网络上抓取到的评论，此字段表示评论者名字。
-    private String commentName;
+	private String commentIp;
 
-    //评论者的IP地址
-    private String commentIp;
+	private Date commentTime;
 
-    //评论时间
-    private Date commentTime;
+	// 评论状态：0：已删除；1：已发布；2:优质评论；
+	private Integer status;
 
-    //帖子id
-    private String postId;
+	private String content;
 
-    //评论状态：0：已删除；1：已发布；2:优质评论；
-    private Integer status;
+	public String getCommentId() {
+		return commentId;
+	}
 
-    //评论内容
-    private String content;
+	public void setCommentId(String commentId) {
+		this.commentId = commentId == null ? null : commentId.trim();
+	}
 
-    public String getCommentId() {
-        return commentId;
-    }
+	public String getpId() {
+		return pId;
+	}
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId == null ? null : commentId.trim();
-    }
+	public void setpId(String pId) {
+		this.pId = pId == null ? null : pId.trim();
+	}
 
-    public String getpId() {
-        return pId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public void setpId(String pId) {
-        this.pId = pId == null ? null : pId.trim();
-    }
+	public void setUserId(String userId) {
+		this.userId = userId == null ? null : userId.trim();
+	}
 
-    public String getUserId() {
-        return userId;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
+	public void setUserName(String userName) {
+		this.userName = userName == null ? null : userName.trim();
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public String getNickName() {
+		return nickName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
+	public void setNickName(String nickName) {
+		this.nickName = nickName == null ? null : nickName.trim();
+	}
 
-    public String getNickName() {
-        return nickName;
-    }
+	public String getCommentIp() {
+		return commentIp;
+	}
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
-    }
+	public void setCommentIp(String commentIp) {
+		this.commentIp = commentIp == null ? null : commentIp.trim();
+	}
 
-    public String getCommentName() {
-        return commentName;
-    }
+	public Date getCommentTime() {
+		return commentTime;
+	}
 
-    public void setCommentName(String commentName) {
-        this.commentName = commentName == null ? null : commentName.trim();
-    }
+	public void setCommentTime(Date commentTime) {
+		this.commentTime = commentTime;
+	}
 
-    public String getCommentIp() {
-        return commentIp;
-    }
+	public String getPostId() {
+		return postId;
+	}
 
-    public void setCommentIp(String commentIp) {
-        this.commentIp = commentIp == null ? null : commentIp.trim();
-    }
+	public void setPostId(String postId) {
+		this.postId = postId == null ? null : postId.trim();
+	}
 
-    public Date getCommentTime() {
-        return commentTime;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setCommentTime(Date commentTime) {
-        this.commentTime = commentTime;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public String getPostId() {
-        return postId;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setPostId(String postId) {
-        this.postId = postId == null ? null : postId.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
+	public void setContent(String content) {
+		this.content = content == null ? null : content.trim();
+	}
 }

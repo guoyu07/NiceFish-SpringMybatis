@@ -1,16 +1,20 @@
 package com.nicefish.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.nicefish.po.POComment;
+import com.nicefish.vo.VONewComment;
 
 public interface CommentService {
-	
-	public int insert(POComment model);
-	
-	public POComment findById(String id);
-	
-	public int delete(String id);
-	
-	public List<POComment> findByPostId(String postId);
+
+	public POComment getCommentById(String commentId);
+
+	public List<POComment> getCommentListByPostId(String postId);
+
+	public int newComment(VONewComment voNewComment)
+			throws IllegalAccessException, InvocationTargetException;
+
+	public int delCommentById(String commentId);
+
 }
