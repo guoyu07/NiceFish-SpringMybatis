@@ -7,7 +7,6 @@
         <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
         <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
         <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
-        <result column="COMMENT_NAME" property="commentName" jdbcType="VARCHAR" />
         <result column="COMMENT_IP" property="commentIp" jdbcType="VARCHAR" />
         <result column="COMMENT_TIME" property="commentTime" jdbcType="TIMESTAMP" />
         <result column="POST_ID" property="postId" jdbcType="VARCHAR" />
@@ -17,7 +16,7 @@
         <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
-        COMMENT_ID, P_ID, USER_ID, USER_NAME, NICK_NAME, COMMENT_NAME, COMMENT_IP, COMMENT_TIME, POST_ID, STATUS
+        COMMENT_ID, P_ID, USER_ID, USER_NAME, NICK_NAME, COMMENT_IP, COMMENT_TIME, POST_ID, STATUS
     </sql>
     <sql id="Blob_Column_List">
         CONTENT
@@ -47,9 +46,6 @@
             </if>
             <if test="nickName != null">
                 NICK_NAME,
-            </if>
-            <if test="commentName != null">
-                COMMENT_NAME,
             </if>
             <if test="commentIp != null">
                 COMMENT_IP,
@@ -83,9 +79,6 @@
             <if test="nickName != null">
                 #{nickName,jdbcType=VARCHAR},
             </if>
-            <if test="commentName != null">
-                #{commentName,jdbcType=VARCHAR},
-            </if>
             <if test="commentIp != null">
                 #{commentIp,jdbcType=VARCHAR},
             </if>
@@ -117,9 +110,6 @@
             </if>
             <if test="nickName != null">
                 NICK_NAME = #{nickName,jdbcType=VARCHAR},
-            </if>
-            <if test="commentName != null">
-                COMMENT_NAME = #{commentName,jdbcType=VARCHAR},
             </if>
             <if test="commentIp != null">
                 COMMENT_IP = #{commentIp,jdbcType=VARCHAR},
