@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicefish.po.POPost;
 import com.nicefish.service.PostService;
-import com.nicefish.utils.BaseEncode;
+import com.nicefish.vo.VONewPost;
 
 @Controller
-@RequestMapping("/posts")
+@RequestMapping("/post")
 public class PostController extends BaseController{
-	private final static ObjectMapper objectMapper = new ObjectMapper();
 	
 	@Autowired
 	private PostService postService;
@@ -30,7 +26,7 @@ public class PostController extends BaseController{
 	@RequestMapping(value = "/getPostListByPage/{currentPage}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> getPostListByPage(@PathVariable int currentPage) throws Exception{
-		List<POPost> poPostList=postService.selectPostsByPage(currentPage+"");
+		List<POPost> poPostList=postService.getPostListByPage(currentPage+"");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("data", poPostList);
 		return resultMap;
@@ -45,22 +41,23 @@ public class PostController extends BaseController{
 		return resultMap;
     }
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "{postId}", method = RequestMethod.GET)
 	@ResponseBody
-	public POPost getPostById(@PathVariable("id")String id) {
-        return postService.findById(id);
+	public POPost getPostById(@PathVariable("postId")String postId) {
+        return postService.getPostById(postId);
     }
 	
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> newPost(@RequestBody POPost post) {
-        return this.ajaxSuccessResponse();
+	public Map<String,Object> newPost(@RequestBody VONewPost voNewPost) throws Exception {
+		String postId=postService.newPost(voNewPost);
+        return this.ajaxSuccessResponse(postId);
     }
 	
-	@RequestMapping(value = "/findbykey", method = RequestMethod.GET)
+	@RequestMapping(value = "/delPost/{postId}", method = RequestMethod.GET)
 	@ResponseBody
-	public String findPostByKey(HttpSession session,String key) throws Exception {
-        List<POPost> list = postService.findByTitle(BaseEncode.encoding(key));
-        return objectMapper.writeValueAsString(list);
+	public Map<String,Object> deleteById(@PathVariable("postId")String postId) {
+		postService.deleteById(postId);
+        return this.ajaxSuccessResponse();
     }
 }
