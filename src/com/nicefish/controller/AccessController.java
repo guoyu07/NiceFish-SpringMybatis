@@ -38,7 +38,7 @@ public class AccessController extends BaseController {
 			return this.ajaxFailureResponse("用户名或者密码错误");
 		}
 		session.setAttribute(SessionConsts.UserInfo, voUserLogin);
-		return this.ajaxSuccessResponse();
+		return this.ajaxSuccessResponse(this.writeJSON("userInfo", userDB));
     }
 	
 	@RequestMapping(value = "/logout/{userId}", method = RequestMethod.GET)

@@ -46,9 +46,9 @@ public class PostServiceImpl implements PostService {
 		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
 		String pageSize=poSysParam.getParamValue();
 		
-		String[] pageParams=WebUtil.parseStartLimit(currentPage,pageSize);
-		String start=pageParams[0];
-		String limit=pageParams[1];
+		int[] pageParams=WebUtil.parseStartLimit(currentPage,pageSize);
+		int start=pageParams[0];
+		int limit=pageParams[1];
 		
 		return postMapper.selectByPage(start,limit);
 	}

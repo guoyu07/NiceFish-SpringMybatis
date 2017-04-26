@@ -49,8 +49,8 @@ public class WebUtil {
 	 * @param pageSize
 	 * @return
 	 */
-	public static String[] parseStartLimit(String currentPage,String pageSize){
-		String[] result=new String[]{"0","10"};
+	public static int[] parseStartLimit(String currentPage,String pageSize){
+		int[] result=new int[]{0,10};
 		if(StringUtils.isBlank(currentPage)||StringUtils.isBlank(currentPage)){
 			currentPage="1";
 		}
@@ -59,8 +59,8 @@ public class WebUtil {
 		}
 		int startRow=Integer.parseInt(currentPage)-1;
 		int limit=Integer.parseInt(pageSize);
-		result[0]=startRow*limit+"";
-		result[1]=limit+"";
+		result[0]=startRow*limit;
+		result[1]=limit;
 		return result;
 	}
 	

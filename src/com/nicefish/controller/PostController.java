@@ -25,11 +25,9 @@ public class PostController extends BaseController{
 
 	@RequestMapping(value = "/getPostListByPage/{currentPage}", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getPostListByPage(@PathVariable int currentPage) throws Exception{
+	public List<POPost> getPostListByPage(@PathVariable int currentPage) throws Exception{
 		List<POPost> poPostList=postService.getPostListByPage(currentPage+"");
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("data", poPostList);
-		return resultMap;
+		return poPostList;
     }
 	
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
