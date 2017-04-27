@@ -87,5 +87,23 @@ public class PostServiceImpl implements PostService {
 		String pageSize=poSysParam.getParamValue();
 		return WebUtil.calcPages(totalCount+"", pageSize);
 	}
+
+	@Override
+	public String getTotalItemsNum() {
+		int totalCount=postMapper.selectCount();
+		return totalCount+"";
+	}
 	
+	@Override
+	public Map<String,Object> getPagerParam() {
+		int totalCount=postMapper.selectCount();
+		
+		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
+		String pageSize=poSysParam.getParamValue();
+		
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("itemsPerPage", pageSize);
+		result.put("totalItems", totalCount);
+		return result;
+	}
 }

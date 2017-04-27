@@ -1,6 +1,5 @@
 package com.nicefish.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +31,22 @@ public class PostController extends BaseController{
 	
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getTotalPages() throws Exception{
+	public String getTotalPages() throws Exception{
 		String totalCount=postService.getTotalPages();
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("totalCount", totalCount);
-		return resultMap;
+		return totalCount;
+    }
+	
+	@RequestMapping(value = "/getTotalItemsNum", method = RequestMethod.GET)
+	@ResponseBody
+	public String getTotalItemsNum() throws Exception{
+		String totalCount=postService.getTotalItemsNum();
+		return totalCount;
+    }
+	
+	@RequestMapping(value = "/getPagerParam", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> getPagerParam() throws Exception{
+		return postService.getPagerParam();
     }
 	
 	@RequestMapping(value = "{postId}", method = RequestMethod.GET)

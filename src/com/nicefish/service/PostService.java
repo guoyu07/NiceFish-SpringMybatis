@@ -2,6 +2,7 @@ package com.nicefish.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 import com.nicefish.po.POPost;
 import com.nicefish.vo.VONewPost;
@@ -22,5 +23,8 @@ public interface PostService {
 	public int deleteById(String postId);
 
 	public String getTotalPages();
-
+	
+	public String getTotalItemsNum();
+	
+	public Map<String,Object> getPagerParam();
 }
