@@ -2,6 +2,7 @@ package com.nicefish.vo;
 
 public class VOUserLogin {
 	private String userName;
+	private String email;
 	private String password;
 	private boolean rememberMe;
 	
@@ -22,5 +23,11 @@ public class VOUserLogin {
 	}
 	public void setRememberMe(boolean rememberMe) {
 		this.rememberMe = rememberMe;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

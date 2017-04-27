@@ -30,12 +30,12 @@ public class AccessController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> login(@RequestBody VOUserLogin voUserLogin,HttpSession session) throws Exception{
-		POUser userDB=userService.findByUserName(voUserLogin.getUserName());
+		POUser userDB=userService.findByEmail(voUserLogin.getUserName());
 		if(null==userDB){
-			return this.ajaxFailureResponse("不存在此用户");
+			return this.ajaxFailureResponse("用户不存在或者密码错误");
 		}
 		if(!userDB.getPassword().equals(voUserLogin.getPassword())){
-			return this.ajaxFailureResponse("用户名或者密码错误");
+			return this.ajaxFailureResponse("用户不存在或者密码错误");
 		}
 		session.setAttribute(SessionConsts.UserInfo, voUserLogin);
 		return this.ajaxSuccessResponse(this.writeJSON("userInfo", userDB));
