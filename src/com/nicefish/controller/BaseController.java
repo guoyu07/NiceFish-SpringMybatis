@@ -10,11 +10,11 @@ import com.google.gson.Gson;
 public class BaseController {
 	protected static final Gson gson=new Gson();
 	
-	protected String writeJSON(String key,Object value){
-		HashMap<String,Object> result=new HashMap<String,Object>();
-		result.put(key, value);
-		return gson.toJson(result);
-	}
+//	protected String writeJSON(String key,Object value){
+//		HashMap<String,Object> result=new HashMap<String,Object>();
+//		result.put(key, value);
+//		return gson.toJson(result);
+//	}
 	
 	protected Map<String,Object> ajaxSuccessResponse(){
 		HashMap<String,Object> result=new HashMap<String,Object>();

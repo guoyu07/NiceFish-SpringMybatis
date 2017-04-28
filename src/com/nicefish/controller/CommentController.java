@@ -1,7 +1,6 @@
 package com.nicefish.controller;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nicefish.po.POComment;
 import com.nicefish.service.CommentService;
 import com.nicefish.vo.VONewComment;
 
@@ -26,10 +24,9 @@ public class CommentController extends BaseController {
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	@ResponseBody
-	public String PostFindByPid(@PathVariable("postId") String postId)
+	public Object PostFindByPid(@PathVariable("postId") String postId)
 			throws Exception {
-		List<POComment> list = commentService.getCommentListByPostId(postId);
-		return this.writeJSON("comments", list);
+		return commentService.getCommentListByPostId(postId);
 	}
 
 	@RequestMapping(value = "/newComment", method = RequestMethod.POST)

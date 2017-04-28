@@ -29,7 +29,7 @@ public class AccessController extends BaseController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> login(@RequestBody VOUserLogin voUserLogin,HttpSession session) throws Exception{
+	public Object login(@RequestBody VOUserLogin voUserLogin,HttpSession session) throws Exception{
 		POUser userDB=userService.findByEmail(voUserLogin.getUserName());
 		if(null==userDB){
 			return this.ajaxFailureResponse("用户不存在或者密码错误");
@@ -38,7 +38,7 @@ public class AccessController extends BaseController {
 			return this.ajaxFailureResponse("用户不存在或者密码错误");
 		}
 		session.setAttribute(SessionConsts.UserInfo, voUserLogin);
-		return this.ajaxSuccessResponse(this.writeJSON("userInfo", userDB));
+		return userDB;
     }
 	
 	@RequestMapping(value = "/logout/{userId}", method = RequestMethod.GET)
