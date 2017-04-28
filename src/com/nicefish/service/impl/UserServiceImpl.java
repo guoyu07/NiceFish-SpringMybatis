@@ -49,6 +49,11 @@ public class UserServiceImpl implements UserService {
 	public POUser findByUserName(String userName) {
 		return userMapper.findByUserName(userName);
 	}
+	
+	@Override
+	public POUser findByNickName(String nickName) {
+		return userMapper.findByNickName(nickName);
+	}
 
 	@Override
 	public POUser findByEmail(String email) {

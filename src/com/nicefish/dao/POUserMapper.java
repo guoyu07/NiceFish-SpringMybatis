@@ -13,6 +13,8 @@ public interface POUserMapper extends BaseMapper<POUser, String>{
 	
 	POUser findByUserName(String userName);
 	
+	POUser findByNickName(String nickName);
+	
 	POUser findByEmail(String email);
 	
 	POUser selectByUserName(String userName);

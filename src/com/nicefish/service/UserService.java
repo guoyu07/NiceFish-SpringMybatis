@@ -12,6 +12,8 @@ public interface UserService {
 	public POUser findByCode(String code);
 
 	public POUser findByUserName(String userName);
+	
+	public POUser findByNickName(String nickName);
 
 	public POUser findByEmail(String email);
 

@@ -171,6 +171,10 @@
         select
         <include refid="Base_Column_List" /> from user where USER_NAME = #{userName,jdbcType=VARCHAR}
     </select>
+    <select id="findByNickName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" /> from user where NICK_NAME = #{nickName,jdbcType=VARCHAR}
+    </select>
     <select id="findByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" /> from user where EMAIL = #{email,jdbcType=VARCHAR}

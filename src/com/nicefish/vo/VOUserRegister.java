@@ -5,8 +5,9 @@ public class VOUserRegister {
 	private String nickName;
 	private String email;
 	private String password;
-	//验证码
-	private String vCode;
+	private String confirmPassword;
+	private String vCode;//图片验证码
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -36,5 +37,11 @@ public class VOUserRegister {
 	}
 	public void setvCode(String vCode) {
 		this.vCode = vCode;
+	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 }

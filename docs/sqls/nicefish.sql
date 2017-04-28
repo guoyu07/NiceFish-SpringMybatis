@@ -85,7 +85,7 @@ CREATE TABLE `post` (
 
 /*Data for the table `post` */
 
-insert  into `post`(`POST_ID`,`POST_TITLE`,`POST_TIME`,`POST_CONTENT`,`ORIGINAL_URL`,`POST_TYPE`,`LAST_MODIFY_TIME`,`READ_TIMES`,`LIKED_TIMES`,`COMMENT_TIMES`,`USER_ID`,`USER_NAME`,`NICK_NAME`,`ENABLE_COMMENT`,`STATUS`) values ('1','草泥马这是标题','2017-04-26 21:10:55','这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；',NULL,0,NULL,1,0,0,'1','damoqiongqiu','大漠穷秋',1,4);
+insert  into `post`(`POST_ID`,`POST_TITLE`,`POST_TIME`,`POST_CONTENT`,`ORIGINAL_URL`,`POST_TYPE`,`LAST_MODIFY_TIME`,`READ_TIMES`,`LIKED_TIMES`,`COMMENT_TIMES`,`USER_ID`,`USER_NAME`,`NICK_NAME`,`ENABLE_COMMENT`,`STATUS`) values ('1','草泥马这是标题','2017-04-26 21:10:55','这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；这是测试内容；',NULL,0,NULL,1,0,0,'48984480-7902-4eb2-8c8d-7cc1798ba950','damoqiongqiu','大漠穷秋',1,4),('2','这是第二个标题','2017-04-27 10:03:24','内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',NULL,0,NULL,1,0,0,'48984480-7902-4eb2-8c8d-7cc1798ba950','damoqiongqiu','大漠穷秋',1,4),('3','还是没有什么内容的土鳖','2017-04-27 11:06:18','内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',NULL,0,NULL,1,0,0,'48984480-7902-4eb2-8c8d-7cc1798ba950','damoqiongqiu','大漠穷秋',1,4);
 
 /*Table structure for table `role` */
 
@@ -175,7 +175,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`USER_ID`,`USER_NAME`,`PASSWORD`,`EMAIL`,`REAL_NAME`,`NICK_NAME`,`E_NAME`,`QQ`,`WEIXIN`,`CELL_PHONE`,`USER_DESC`,`UP_ID`,`STATUS`,`REG_TIME`,`LASTLOGIN_TIME`) values ('1','damoqiongqiu','03053311','damoqiongqiu@126.com',NULL,'大漠穷秋',NULL,NULL,NULL,NULL,NULL,NULL,1,'2017-04-24 17:17:55','0000-00-00 00:00:00');
+insert  into `user`(`USER_ID`,`USER_NAME`,`PASSWORD`,`EMAIL`,`REAL_NAME`,`NICK_NAME`,`E_NAME`,`QQ`,`WEIXIN`,`CELL_PHONE`,`USER_DESC`,`UP_ID`,`STATUS`,`REG_TIME`,`LASTLOGIN_TIME`) values ('48984480-7902-4eb2-8c8d-7cc1798ba950',NULL,'12345678','damoqiongqiu@126.com',NULL,'大漠穷秋',NULL,NULL,NULL,NULL,NULL,NULL,1,'2017-04-28 21:08:37','0000-00-00 00:00:00');
 
 /*Table structure for table `user_role` */
 

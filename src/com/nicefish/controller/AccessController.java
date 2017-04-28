@@ -51,29 +51,34 @@ public class AccessController extends BaseController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> register(@RequestBody VOUserRegister voUserRegister,HttpSession session) throws Exception{
-		POUser poUser=userService.findByUserName(voUserRegister.getUserName());
+	public Object register(@RequestBody VOUserRegister voUserRegister,HttpSession session) throws Exception{
+		POUser poUser=userService.findByEmail(voUserRegister.getEmail());
 		if(null!=poUser){
-			return this.ajaxSuccessResponse("已经存在相同的用户名");
+			return this.ajaxFailureResponse("此邮箱已经被注册");
 		}
-		poUser=userService.findByEmail(voUserRegister.getEmail());
-		if(null!=poUser){
-			return this.ajaxSuccessResponse("此邮箱已经被注册");
-		}
-		voUserRegister.getvCode();
 		
-		Object vCodeSession=session.getAttribute(SessionConsts.ImageVertifyCode);
-		if(null==vCodeSession||!voUserRegister.getvCode().equals(vCodeSession.toString())){
-			return this.ajaxSuccessResponse("验证码错误，请重新获取验证码");
+		poUser=userService.findByNickName(voUserRegister.getNickName());
+		if(null!=poUser){
+			return this.ajaxFailureResponse("此昵称已经被注册");
 		}
+		//TODO:检查图片验证码
+//		Object vCodeSession=session.getAttribute(SessionConsts.ImageVertifyCode);
+//		if(null==vCodeSession||!voUserRegister.getvCode().equals(vCodeSession.toString())){
+//			return this.ajaxSuccessResponse("验证码错误，请重新获取验证码");
+//		}
 		
 		poUser=new POUser();
 		BeanUtils.copyProperties(poUser, voUserRegister);
 		poUser.setUserId(UUID.randomUUID().toString());
 		
 		//TODO：给用户发送注册验证邮件
-		
-		userService.insert(poUser);
-		return this.ajaxSuccessResponse();
+		int affected=userService.insert(poUser);
+		if(affected>0){
+			//注册成功自动切换到登录状态
+			session.setAttribute(SessionConsts.UserInfo, poUser);
+			return poUser;			
+		}else{
+			return this.ajaxFailureResponse();
+		}
     }
 }
