@@ -22,12 +22,18 @@ public class CommentController extends BaseController {
 	@Autowired
 	private CommentService commentService;
 
-	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{postId}/{pageIndex}", method = RequestMethod.GET)
 	@ResponseBody
-	public Object PostFindByPid(@PathVariable("postId") String postId)
+	public Object getCommentByPostIdAndPage(@PathVariable("postId") String postId,@PathVariable("pageIndex") String pageIndex)
 			throws Exception {
-		return commentService.getCommentListByPostId(postId);
+		return commentService.getCommentByPostIdAndPage(postId,pageIndex);
 	}
+	
+	@RequestMapping(value = "/getPagerParam/{postId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> getPagerParam(@PathVariable("postId") String postId) throws Exception{
+		return commentService.getPagerParam(postId);
+    }
 
 	@RequestMapping(value = "/newComment", method = RequestMethod.POST)
 	@ResponseBody

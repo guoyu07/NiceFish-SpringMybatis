@@ -32,12 +32,12 @@ public class POPost implements Serializable {
 
 	private String userName;
 
-	private Integer enableComment;
-	
 	private String nickName;
+	
+	private Integer enableComment;
 
 	private String postContent;
-	
+
 	// 状态：默认4 1、已删除 2、已归档，已归档的内容禁止评论，文章不可删除 3、草稿 4、已发布 5、精华-->精华文章不可删除 6、已推至首页
 	private Integer status;
 
