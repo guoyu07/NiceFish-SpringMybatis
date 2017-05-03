@@ -23,6 +23,16 @@
 
 - 打开你的浏览器，访问你的项目路径
 
+请不要问我为什么用MyEclipse，因为：
+
+如果我用NetBeans，你们会问我为什么不用MyEclipse？为什么不用Eclipse？为什么不用IDEA？
+
+如果我用IDEA，你们会问我为什么不用MyEclipse？为什么不用Eclipse？为什么不用NetBeans？
+
+如果我用Eclipse，你们会问我为什么不用MyEclipse？为什么不用NetBeans？为什么不用IDEA？
+
+如果你不习惯用MyEclipse，你可以直说，然后自己尝试去把代码迁移到其它IDE里面去。
+
 # 说明
 
 这个项目的目的是示范最新版本的Angular如何与基于SpringMVC的后台服务进行对接。我会逐步把功能丰富起来，目前我一个人在做，加上要出去讲课、要写文章啥的，进度会慢一些。
