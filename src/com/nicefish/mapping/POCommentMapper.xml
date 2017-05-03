@@ -132,14 +132,17 @@
     <select id="findByPostId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" /> ,
-        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0
+        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0 order by COMMENT_TIME desc 
     </select>
     <select id="findByPostIdAndPage" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List" /> ,
-        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0 limit #{beginRow},#{pageSize}
+        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0 order by COMMENT_TIME desc limit #{beginRow},#{pageSize}
     </select>
     <select id="selectCount" resultType="java.lang.Integer">
-        select count(*) as TOTAL_NUM from comment where POST_ID = #{postId,jdbcType=VARCHAR}
+        select count(*) as TOTAL_NUM 
+        from comment 
+        where POST_ID = #{postId,jdbcType=VARCHAR}
+        and STATUS != 0
     </select>
 </mapper>

@@ -34,6 +34,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int newComment(VONewComment voNewComment)
 			throws IllegalAccessException, InvocationTargetException {
+		
 		POComment poComment = new POComment();
 		BeanUtils.copyProperties(poComment, voNewComment);
 

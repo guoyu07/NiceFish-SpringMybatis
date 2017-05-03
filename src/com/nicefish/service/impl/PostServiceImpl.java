@@ -56,9 +56,12 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public String newPost(VONewPost voNewPost) throws IllegalAccessException, InvocationTargetException {
 		POPost poPost=new POPost();
-		BeanUtils.copyProperties(poPost, voNewPost);		
+		BeanUtils.copyProperties(poPost, voNewPost);
+		
 		POUser poUser=userSerivce.findById(voNewPost.getUserId());
-		BeanUtils.copyProperties(poPost, poUser);
+		poPost.setUserId(poUser.getUserId());
+		poPost.setUserName(poUser.getUserName());
+		poPost.setNickName(poUser.getNickName());
 		
 		String postId=UUID.randomUUID().toString();
 		poPost.setPostId(postId);

@@ -1,6 +1,6 @@
 webpackJsonp([3,9],{
 
-/***/ 1277:
+/***/ 1278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28,8 +28,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-home',
-        template: __webpack_require__(1289),
-        styles: [__webpack_require__(1302)],
+        template: __webpack_require__(1290),
+        styles: [__webpack_require__(1303)],
         animations: [
             __WEBPACK_IMPORTED_MODULE_1__animations_fly_in__["a" /* flyIn */]
         ]
@@ -41,49 +41,31 @@ HomeComponent = __decorate([
 
 /***/ }),
 
-/***/ 1289:
+/***/ 1290:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\" [@flyIn]=\"'active'\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-9\">\r\n            <!--这里是左侧动态加载的内容-->\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <div class=\"col-sm-3\">\r\n            <app-social-channel></app-social-channel>\r\n            <app-online-contact></app-online-contact>\r\n            <app-sitestat></app-sitestat>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 1290:
+/***/ 1291:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"online-contact-container\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n            <h3 class=\"panel-title\">QQ群-请勿加多个</h3>\r\n        </div>\r\n        <div class=\"list-group\">\r\n            <a target=\"_blank\" href=\"//shang.qq.com/wpa/qunwpa?idkey=8db5ed802cbddbf6432d7ba7dc4f2a316be020442491eb41cbfb1a12434e8cc7\" class=\"list-group-item\"><i class=\"fa fa-qq\" aria-hidden=\"true\"></i> Angular 1区:286047042（满）</a>\r\n            <a target=\"_blank\" href=\"//shang.qq.com/wpa/qunwpa?idkey=cbfcd79e7e90939b0e2c519f475fac4792985ce2abc5ad45ec5e06ffcfe944dd\" class=\"list-group-item\"><i class=\"fa fa-qq\" aria-hidden=\"true\"></i> Angular 2区:139357161（满）</a>\r\n            <a target=\"_blank\" href=\"//shang.qq.com/wpa/qunwpa?idkey=639229c8b6ad0c3a9a8f381dddf5d7785780b20d8c37eb25c91ac73ea7d37a5f\" class=\"list-group-item\"><i class=\"fa fa-qq\" aria-hidden=\"true\"></i> Angular 3区:473129930（满）</a>            \r\n            <a target=\"_blank\" href=\"//shang.qq.com/wpa/qunwpa?idkey=12add102af3f67910bdc0de753dee10ebada08ab485af7e38f4dfa0ee27476f7\" class=\"list-group-item\"><i class=\"fa fa-qq\" aria-hidden=\"true\"></i> Angular 4区:483016484（将满）</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 1291:
+/***/ 1292:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"social-channel-container\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n            <h3 class=\"panel-title\">社交媒体</h3>\r\n        </div>\r\n        <div class=\"list-group\">\r\n            <a href=\"http://weibo.com/2932378834/profile?topnav=1&wvr=6\" class=\"list-group-item\" target=\"_blank\"><i class=\"fa fa-weibo\" aria-hidden=\"true\"></i> 官方微博</a>\r\n            <a href=\"http://i.youku.com/i/UMzI1MjQ0MDgw/videos?spm=a2hzp.8244740.0.0\" class=\"list-group-item\" target=\"_blank\"><i class=\"fa fa-video-camera\" aria-hidden=\"true\"></i> 优酷视频教程</a>\r\n            <a href=\"https://www.youtube.com/watch?v=cLQUI7t30HY&list=PLbhC27Bf6WlnJReRfmuH5FCrWLXYwrFtO\" class=\"list-group-item\" target=\"_blank\"><i class=\"fa fa-youtube\" aria-hidden=\"true\"></i> 油管视频教程</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 1299:
+/***/ 1300:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"site-stat-container\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n            <h3 class=\"panel-title\">{{currentTime | date:'yyyy-MM-dd HH:mm:ss'}}</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <p>访问总数：16742169</p>\r\n            <p>文章总数：2458</p>\r\n            <p>评论总数：7880</p>\r\n            <p>会员总数：12772</p>\r\n            <p>在线访客：187</p>\r\n            <p>在线会员：2</p>\r\n            <p>在线记录：268</p>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
-
-/***/ }),
-
-/***/ 1302:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(20)(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
 
 /***/ }),
 
@@ -123,7 +105,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 1312:
+/***/ 1305:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(20)(false);
@@ -141,11 +123,29 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 1315:
+/***/ 1313:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(20)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 1317:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_component__ = __webpack_require__(1277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_component__ = __webpack_require__(1278);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return homeRoutes; });
 
 var homeRoutes = [
@@ -162,7 +162,7 @@ var homeRoutes = [
 
 /***/ }),
 
-/***/ 1316:
+/***/ 1318:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -188,8 +188,8 @@ var OnlineContactComponent = (function () {
 OnlineContactComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-online-contact',
-        template: __webpack_require__(1290),
-        styles: [__webpack_require__(1303)]
+        template: __webpack_require__(1291),
+        styles: [__webpack_require__(1304)]
     }),
     __metadata("design:paramtypes", [])
 ], OnlineContactComponent);
@@ -198,7 +198,7 @@ OnlineContactComponent = __decorate([
 
 /***/ }),
 
-/***/ 1317:
+/***/ 1319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -224,8 +224,8 @@ var SocialChannelComponent = (function () {
 SocialChannelComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-social-channel',
-        template: __webpack_require__(1291),
-        styles: [__webpack_require__(1304)]
+        template: __webpack_require__(1292),
+        styles: [__webpack_require__(1305)]
     }),
     __metadata("design:paramtypes", [])
 ], SocialChannelComponent);
@@ -234,7 +234,7 @@ SocialChannelComponent = __decorate([
 
 /***/ }),
 
-/***/ 1322:
+/***/ 1325:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -263,8 +263,8 @@ var SitestatComponent = (function () {
 SitestatComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-sitestat',
-        template: __webpack_require__(1299),
-        styles: [__webpack_require__(1312)]
+        template: __webpack_require__(1300),
+        styles: [__webpack_require__(1313)]
     }),
     __metadata("design:paramtypes", [])
 ], SitestatComponent);
@@ -281,11 +281,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_shared_module__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_component__ = __webpack_require__(1277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__social_channel_social_channel_component__ = __webpack_require__(1317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sitestat_sitestat_component__ = __webpack_require__(1322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__online_contact_online_contact_component__ = __webpack_require__(1316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_routes__ = __webpack_require__(1315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_component__ = __webpack_require__(1278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__social_channel_social_channel_component__ = __webpack_require__(1319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sitestat_sitestat_component__ = __webpack_require__(1325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__online_contact_online_contact_component__ = __webpack_require__(1318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_routes__ = __webpack_require__(1317);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

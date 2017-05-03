@@ -37,7 +37,7 @@ public class AccessController extends BaseController {
 		if(!userDB.getPassword().equals(voUserLogin.getPassword())){
 			return this.ajaxFailureResponse("用户不存在或者密码错误");
 		}
-		session.setAttribute(SessionConsts.UserInfo, voUserLogin);
+		session.setAttribute(SessionConsts.UserInfo, userDB);
 		return userDB;
     }
 	

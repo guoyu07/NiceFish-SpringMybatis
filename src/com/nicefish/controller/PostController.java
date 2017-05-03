@@ -3,6 +3,8 @@ package com.nicefish.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nicefish.po.POPost;
+import com.nicefish.po.POUser;
 import com.nicefish.service.PostService;
+import com.nicefish.utils.SessionConsts;
 import com.nicefish.vo.VONewPost;
 
 @Controller
@@ -57,7 +61,15 @@ public class PostController extends BaseController{
 	
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> newPost(@RequestBody VONewPost voNewPost) throws Exception {
+	public Map<String,Object> newPost(@RequestBody VONewPost voNewPost,HttpSession session) throws Exception {
+		//校验用户是否已经登录
+		if(null==session.getAttribute(SessionConsts.UserInfo)){
+			return this.ajaxFailureResponse("请先登录");
+		}
+		
+		POUser poUser=(POUser) session.getAttribute(SessionConsts.UserInfo);
+		voNewPost.setUserId(poUser.getUserId());
+		
 		String postId=postService.newPost(voNewPost);
         return this.ajaxSuccessResponse(postId);
     }

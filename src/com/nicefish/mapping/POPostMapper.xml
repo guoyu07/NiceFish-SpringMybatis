@@ -17,7 +17,7 @@
         <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="com.nicefish.po.POPost" extends="BaseResultMap">
-        <result column="POST_CONTENT" property="postContent" jdbcType="LONGVARCHAR" />
+        <result column="POST_CONTENT" property="content" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
         POST_ID, POST_TITLE, POST_TIME, POST_TYPE, LAST_MODIFY_TIME, READ_TIMES, LIKED_TIMES, COMMENT_TIMES, USER_ID, USER_NAME, ENABLE_COMMENT, STATUS, NICK_NAME
@@ -75,7 +75,7 @@
             <if test="nickName != null">
                 NICK_NAME,
             </if>
-            <if test="postContent != null">
+            <if test="content != null">
                 POST_CONTENT,
             </if>
         </trim>
@@ -119,8 +119,8 @@
             <if test="nickName != null">
                 #{nickName,jdbcType=VARCHAR},
             </if>
-            <if test="postContent != null">
-                #{postContent,jdbcType=LONGVARCHAR},
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
             </if>
         </trim>
     </insert>
@@ -163,8 +163,8 @@
             <if test="nickName != null">
                 NICK_NAME = #{nickName,jdbcType=VARCHAR},
             </if>
-            <if test="postContent != null">
-                POST_CONTENT = #{postContent,jdbcType=LONGVARCHAR},
+            <if test="content != null">
+                POST_CONTENT = #{content,jdbcType=LONGVARCHAR},
             </if>
         </set>
         where POST_ID = #{postId,jdbcType=VARCHAR}
