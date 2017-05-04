@@ -4,7 +4,6 @@ package com.nicefish.utils;
 
 public class MobileValidate implements IValidate{
 
-	@Override
 	public Result<String> Validate(String value) {
 		return validate(value);
 	}

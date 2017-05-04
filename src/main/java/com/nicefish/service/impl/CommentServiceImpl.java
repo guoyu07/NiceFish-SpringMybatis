@@ -1,15 +1,5 @@
 package com.nicefish.service.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.nicefish.dao.POCommentMapper;
 import com.nicefish.po.POComment;
 import com.nicefish.po.POSysParam;
@@ -19,6 +9,15 @@ import com.nicefish.service.SysParamService;
 import com.nicefish.service.UserService;
 import com.nicefish.utils.WebUtil;
 import com.nicefish.vo.VONewComment;
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
@@ -31,7 +30,6 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private UserService userService;
 
-	@Override
 	public int newComment(VONewComment voNewComment)
 			throws IllegalAccessException, InvocationTargetException {
 		
@@ -45,22 +43,17 @@ public class CommentServiceImpl implements CommentService {
 		return commentMapper.insertSelective(poComment);
 	}
 
-	@Override
 	public POComment getCommentById(String id) {
 		return commentMapper.selectByPrimaryKey(id);
 	}
-
-	@Override
 	public int delCommentById(String id) {
 		return commentMapper.deleteByPrimaryKey(id);
 	}
 
-	@Override
 	public List<POComment> getCommentListByPostId(String postId) {
 		return commentMapper.findByPostId(postId);
 	}
 
-	@Override
 	public List<POComment> getCommentByPostIdAndPage(String postId,String pageIndex) {
 		POSysParam poSysParam=sysParamService.findByParamKey("COMMENT_PAGE_NUM");
 		String pageSize=poSysParam.getParamValue();
@@ -72,7 +65,6 @@ public class CommentServiceImpl implements CommentService {
 		return commentMapper.findByPostIdAndPage(postId,start,limit);
 	}
 
-	@Override
 	public Map<String, Object> getPagerParam(String postId) {
 		int totalCount=commentMapper.selectCount(postId);
 		

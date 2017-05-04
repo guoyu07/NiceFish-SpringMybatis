@@ -3,7 +3,6 @@ package com.nicefish.utils;
 
 public class PasswordValidate implements IValidate {
 
-	@Override
 	public Result<String> Validate(String value) {
 		return validate(value);
 	}
