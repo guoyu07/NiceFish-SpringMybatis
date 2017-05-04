@@ -1,12 +1,12 @@
 package com.nicefish.dao;
 
+import com.nicefish.po.POPost;
+import com.nicefish.utils.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
-import com.nicefish.po.POPost;
-import com.nicefish.utils.BaseMapper;
 
 public interface POPostMapper extends BaseMapper<POPost, String>{
     

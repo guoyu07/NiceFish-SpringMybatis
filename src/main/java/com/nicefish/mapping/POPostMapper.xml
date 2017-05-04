@@ -19,6 +19,7 @@
     <resultMap id="ResultMapWithBLOBs" type="com.nicefish.po.POPost" extends="BaseResultMap">
         <result column="POST_CONTENT" property="content" jdbcType="LONGVARCHAR" />
     </resultMap>
+
     <sql id="Base_Column_List">
         POST_ID, POST_TITLE, POST_TIME, POST_TYPE, LAST_MODIFY_TIME, READ_TIMES, LIKED_TIMES, COMMENT_TIMES, USER_ID, USER_NAME, ENABLE_COMMENT, STATUS, NICK_NAME
     </sql>
