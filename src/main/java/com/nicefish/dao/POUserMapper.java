@@ -1,9 +1,10 @@
 package com.nicefish.dao;
 
-import java.util.List;
-
 import com.nicefish.po.POUser;
 import com.nicefish.utils.BaseMapper;
+
+import java.util.List;
+import java.util.Set;
 
 public interface POUserMapper extends BaseMapper<POUser, String>{
     
@@ -18,4 +19,6 @@ public interface POUserMapper extends BaseMapper<POUser, String>{
 	POUser findByEmail(String email);
 	
 	POUser selectByUserName(String userName);
+
+    Set<String> findRoles(String username);
 }

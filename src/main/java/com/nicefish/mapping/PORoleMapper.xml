@@ -10,6 +10,15 @@
     <sql id="Base_Column_List">
         ROLE_ID, ROLE_NAME, ROLE_DESC, TYPE
     </sql>
+
+    <select id="findRoles" resultType="java.util.HashSet" parameterType="string">
+        select role_name from user_role
+            left join role on user_role.role_id = role.role_id
+            where user_role.user_id = (
+                select user_id from user where user.user_name = #{username}
+            )
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" /> from role where ROLE_ID = #{roleId,jdbcType=VARCHAR}

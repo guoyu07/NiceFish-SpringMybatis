@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.nicefish.dao.PORoleMapper;
 import com.nicefish.service.RoleService;
 
+import java.util.Set;
+
 @Service("roleService")
 public class RoleServiceImpl implements RoleService{
 	private PORoleMapper roleMapper;
@@ -16,5 +18,9 @@ public class RoleServiceImpl implements RoleService{
 	@Autowired
 	public void setRoleMapper(PORoleMapper roleMapper) {
 		this.roleMapper = roleMapper;
+	}
+
+	public Set<String> findRoles(String username) {
+		return roleMapper.findRoles(username);
 	}
 }

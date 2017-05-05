@@ -1,8 +1,8 @@
 package com.nicefish.service;
 
-import java.util.List;
-
 import com.nicefish.po.POUser;
+
+import java.util.List;
 
 public interface UserService {
 	public int insert(POUser user);
@@ -22,5 +22,4 @@ public interface UserService {
 	public int delete(String id);
 
 	public int update(POUser user);
-
 }

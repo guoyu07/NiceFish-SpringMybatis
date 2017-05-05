@@ -28,14 +28,15 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 	
 	<!-- SpringMVC注解驱动 --> 
 	<mvc:annotation-driven/>
+
+
 	
 	<!-- 静态资源文件，不会被Spring MVC拦截 -->
     <mvc:resources location="/assets/" mapping="/assets/**"/>
 	
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
-	
-	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->  
+	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />-->
+	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
         <property name="supportedMediaTypes">  
             <list>  
