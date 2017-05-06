@@ -1,11 +1,11 @@
 package com.nicefish.service;
 
+import com.nicefish.po.POPost;
+import com.nicefish.vo.VONewPost;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
-
-import com.nicefish.po.POPost;
-import com.nicefish.vo.VONewPost;
 
 public interface PostService {
 
@@ -27,4 +27,16 @@ public interface PostService {
 	public String getTotalItemsNum();
 	
 	public Map<String,Object> getPagerParam();
+
+	/**
+	 * <p>
+	 *     根据用户ID查询文章
+	 * </p>
+	 * @param userId String 用户ID
+	 * @param currentPage String 当前页
+	 * @return List 文章集合
+	 */
+    List<POPost> getPostByUserId(String userId, String currentPage);
+
+	Long countByUserId(String userId);
 }

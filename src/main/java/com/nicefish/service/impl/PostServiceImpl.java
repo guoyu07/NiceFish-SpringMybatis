@@ -100,4 +100,19 @@ public class PostServiceImpl implements PostService {
 		result.put("totalItems", totalCount);
 		return result;
 	}
+
+	public List<POPost> getPostByUserId(String userId, String currentPage) {
+		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
+		String pageSize=poSysParam.getParamValue();
+
+		int[] pageParams=WebUtil.parseStartLimit(currentPage,pageSize);
+		int start=pageParams[0];
+		int limit=pageParams[1];
+
+		return postMapper.getPostByUserId(userId,start,limit);
+	}
+
+	public Long countByUserId(String userId) {
+		return postMapper.countByUserId(userId);
+	}
 }

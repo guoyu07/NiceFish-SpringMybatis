@@ -17,4 +17,8 @@ public interface POPostMapper extends BaseMapper<POPost, String>{
 	List<POPost> selectByPage(@Param("beginRow")int beginRow,@Param("pageSize")int pageSize);
 
 	int selectCount();
+
+    List<POPost> getPostByUserId(@Param("userId") String userId, @Param("start") int start, @Param("limit") int limit);
+
+	Long countByUserId(@Param("userId") String userId);
 }

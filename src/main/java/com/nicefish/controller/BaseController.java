@@ -1,14 +1,17 @@
 package com.nicefish.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BaseController {
 	protected static final Gson gson=new Gson();
+
+	private static final String ROWS = "rows";
+	private static final String TOTAL = "total";
 	
 //	protected String writeJSON(String key,Object value){
 //		HashMap<String,Object> result=new HashMap<String,Object>();
@@ -42,5 +45,12 @@ public class BaseController {
 		result.put("success",false);
 		result.put("msg", msg);
 		return result;
+	}
+
+	public Map<String,Object> buildResponse(List rows, long total){
+		Map<String,Object> map = new HashMap<>();
+		map.put(ROWS,rows);
+		map.put(TOTAL,total);
+		return map;
 	}
 }
