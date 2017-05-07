@@ -16,7 +16,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		<property name="loginUrl" value="/access/login"/>
 		<property name="filterChainDefinitions">
 			<value>
-				/access/login=authc
 				/access/register=anon
 				/** = anon
 			</value>

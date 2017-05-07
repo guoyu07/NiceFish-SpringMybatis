@@ -4,6 +4,7 @@ import com.nicefish.dao.POUserMapper;
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
 import com.nicefish.utils.PasswordHelper;
+import com.nicefish.utils.UuidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public int insert(POUser user) {
+		user.setUserId(UuidUtils.generate());
 		user.setPassword(PasswordHelper.encryptPassword(user));
 		return userMapper.insertSelective(user);
 	}

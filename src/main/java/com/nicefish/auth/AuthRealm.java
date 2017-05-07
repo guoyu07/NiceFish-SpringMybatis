@@ -45,10 +45,10 @@ public class AuthRealm extends AuthorizingRealm {
      * @throws AuthenticationException
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String username = String.valueOf(authenticationToken.getPrincipal());
-        POUser user = userService.findByEmail(username);
+        String userName = String.valueOf(authenticationToken.getPrincipal());
+        POUser user = userService.findByEmail(userName);
         if(user == null) {
-            user = userService.findByUserName(username);
+            user = userService.findByUserName(userName);
         }
 
         if(user == null){
