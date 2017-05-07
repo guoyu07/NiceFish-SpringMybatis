@@ -8,28 +8,43 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
 	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="com.nicefish.service..*" />
+	<context:component-scan base-package="com.nicefish.service.*" />
 
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
-		<property name="loginUrl" value="/login"></property>
+		<property name="loginUrl" value="/access/login"/>
 		<property name="filterChainDefinitions">
 			<value>
-				/login=authc
-				/** = user
+				/access/login=authc
+				/access/register=anon
+				/** = anon
 			</value>
 		</property>
 	</bean>
 
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
-		<property name="realm" ref="authRealm"/>
-		<!-- By default the servlet container sessions will be used.  Uncomment this line
-             to use shiro's native sessions (see the JavaDoc for more): -->
-		<!-- <property name="sessionMode" value="native"/> -->
+	<bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="sha-512"/>
+		<property name="hashIterations" value="1024"/>
 	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authRealm"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+		<property name="arguments" ref="securityManager"/>
+	</bean>
+
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
-	<bean id="authRealm" class="com.nicefish.auth.AuthRealm"></bean>
+	<bean id="authRealm" class="com.nicefish.auth.AuthRealm">
+		<property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+	</bean>
 </beans>

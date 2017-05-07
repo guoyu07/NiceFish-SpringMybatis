@@ -6,7 +6,6 @@ import com.nicefish.service.PostService;
 import com.nicefish.utils.SessionConsts;
 import com.nicefish.vo.VONewPost;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;

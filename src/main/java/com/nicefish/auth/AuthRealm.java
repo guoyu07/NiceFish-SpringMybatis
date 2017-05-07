@@ -24,6 +24,11 @@ public class AuthRealm extends AuthorizingRealm {
     @Resource
     private RoleService roleService;
 
+    /**
+     * 授权
+     * @param principals
+     * @return
+     */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = String.valueOf(principals.getPrimaryPrincipal());
 
@@ -33,14 +38,17 @@ public class AuthRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = String.valueOf(authenticationToken.getPrincipal());
         POUser user = userService.findByEmail(username);
-        if(user == null){
+        if(user == null) {
             user = userService.findByUserName(username);
-        }
-        if(user == null){
-            user = userService.findByCode(username);
         }
 
         if(user == null){
@@ -50,9 +58,9 @@ public class AuthRealm extends AuthorizingRealm {
             throw new LockedAccountException();
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user.getUserName(), //用户名
+                user.getEmail(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getUserName()),//salt=username
+                ByteSource.Util.bytes(user.getEmail()),//salt=username
                 getName()  //realm name
         );
         return authenticationInfo;
