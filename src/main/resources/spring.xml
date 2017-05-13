@@ -31,7 +31,12 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	<bean id="defaultSessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager"/>
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="authRealm"/>
+		<property name="realms">
+			<list>
+				<ref bean="formRealm"/>
+				<ref bean="jwtRealm"/>
+			</list>
+		</property>
 		<property name="sessionManager" ref="defaultSessionManager"/>
 	</bean>
 
@@ -47,7 +52,8 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
-	<bean id="authRealm" class="com.nicefish.auth.AuthRealm">
+	<bean id="formRealm" class="com.nicefish.auth.FormRealm">
 		<property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
 	</bean>
+	<bean id="jwtRealm" class="com.nicefish.auth.JwtRealm"/>
 </beans>
