@@ -8,8 +8,13 @@ import org.apache.shiro.authc.SimpleAccount;
 
 import javax.annotation.Resource;
 
+
 /**
- * Created by zhongzhong on 2017/5/13.
+ * <p>
+ * 基于Jwt的认证Realm，用于除登录之外的其他请求
+ * </p>
+ *
+ * @author zhongzhong
  */
 public class JwtRealm extends AbstractRealm {
 
@@ -18,16 +23,16 @@ public class JwtRealm extends AbstractRealm {
 
     @Override
     public boolean supports(AuthenticationToken token) {
-        return token !=null && token instanceof JwtAuthenticationToken;
+        return token != null && token instanceof JwtAuthenticationToken;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        JwtAuthenticationToken jwtToken = (JwtAuthenticationToken)token;
+        JwtAuthenticationToken jwtToken = (JwtAuthenticationToken) token;
 
         //验证token是否有效
         tokenService.validateToken(jwtToken.getToken());
 
-        return new SimpleAccount(jwtToken.getPrincipal(),jwtToken.getCredentials(),getName());
+        return new SimpleAccount(jwtToken.getPrincipal(), jwtToken.getCredentials(), getName());
     }
 }

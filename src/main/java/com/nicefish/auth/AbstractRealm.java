@@ -14,7 +14,11 @@ import javax.annotation.Resource;
 import java.util.Set;
 
 /**
- * Created by zhongzhong on 2017/5/13.
+ * <p>
+ * 所有自定义Realm的父类，用于抽象授权方法
+ * </p>
+ *
+ * @author zhongzhong
  */
 public abstract class AbstractRealm extends AuthorizingRealm {
 
@@ -26,8 +30,9 @@ public abstract class AbstractRealm extends AuthorizingRealm {
 
     /**
      * 授权
-     * @param principals
-     * @return
+     *
+     * @param principals PrincipalCollection
+     * @return AuthorizationInfo
      */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = String.valueOf(principals.getPrimaryPrincipal());

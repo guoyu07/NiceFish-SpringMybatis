@@ -3,7 +3,11 @@ package com.nicefish.auth;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * Created by zhongzhong on 2017/5/13.
+ * <p>
+ * 认证Token
+ * </p>
+ *
+ * @author zhongzhong
  */
 public class JwtAuthenticationToken implements AuthenticationToken {
     private String userId;

@@ -1,8 +1,17 @@
 package com.nicefish.service;
 
 /**
- * Created by zhongzhong on 2017/5/13.
+ * <p>
+ * TokenService用于校验token是否有效
+ * </p>
+ *
+ * @author zhongzhong
  */
 public interface TokenService {
-    boolean validateToken(String token);
+    /**
+     * 校验token的方法
+     *
+     * @param token jwt token
+     */
+    void validateToken(String token);
 }

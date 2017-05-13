@@ -4,12 +4,18 @@ import com.nicefish.service.TokenService;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by zhongzhong on 2017/5/13.
+ * <p>
+ * TokenService实现类
+ * </p>
+ *
+ * @author zhongzhong
  */
+
 @Service
 public class TokenServiceImpl implements TokenService {
+
     @Override
-    public boolean validateToken(String token) {
-        return false;
+    public void validateToken(String token) {
+
     }
 }
