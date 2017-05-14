@@ -10,7 +10,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.nicefish.service.*" />
 
-
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
 		<property name="loginUrl" value="/access/login"/>
@@ -25,6 +24,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 			<value>
 				/access/login=anon
 				/access/register=anon
+				/post/**=anon
 				/** = acf
 			</value>
 		</property>

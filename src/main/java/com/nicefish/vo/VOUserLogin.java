@@ -1,6 +1,7 @@
 package com.nicefish.vo;
 
 public class VOUserLogin {
+	private String userId;
 	private String userName;
 	private String email;
 	private String nickName;
@@ -9,6 +10,14 @@ public class VOUserLogin {
 
 	public String getToken() {
 		return token;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public void setToken(String token) {

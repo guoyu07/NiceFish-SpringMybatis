@@ -56,9 +56,9 @@ public class FormRealm extends AuthorizingRealm {
             throw new LockedAccountException();
         }
         return new SimpleAuthenticationInfo(
-                user.getEmail(), //用户名
+                user.getUserId(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getEmail()),//salt=username
+                ByteSource.Util.bytes(user.getUserId()),//salt=userId
                 getName()  //realm name
         );
     }

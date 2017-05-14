@@ -22,4 +22,6 @@ public interface UserService {
 	public int delete(String id);
 
 	public int update(POUser user);
+
+	void ensureUser(POUser user) throws Exception;
 }

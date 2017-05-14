@@ -2,6 +2,8 @@ package com.nicefish.exception.handler;
 
 import com.nicefish.controller.BaseController;
 import com.nicefish.exception.EmailConflictException;
+import com.nicefish.exception.PasswordRequiredException;
+import com.nicefish.exception.UserNameRequiredException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -19,6 +21,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class NiceFishExceptionHandler extends BaseController{
     private static Logger log = LoggerFactory.getLogger(NiceFishExceptionHandler.class);
+
+
+    @ExceptionHandler(UserNameRequiredException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public Object handlerUserNameRequiredException(){
+        return this.ajaxFailureResponse("用户名不能为空。");
+    }
+
+    @ExceptionHandler(PasswordRequiredException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public Object handlerPasswordRequiredException(){
+        return this.ajaxFailureResponse("密码不能为空。");
+    }
 
     @ExceptionHandler(UnknownAccountException.class)
     @ResponseStatus(HttpStatus.OK)

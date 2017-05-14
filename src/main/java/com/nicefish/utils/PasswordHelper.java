@@ -14,7 +14,7 @@ public class PasswordHelper {
     public static String encryptPassword(POUser user){
         return new SimpleHash(hashAlgorithmName,
                 user.getPassword(),
-                ByteSource.Util.bytes(user.getEmail()),
+                ByteSource.Util.bytes(user.getUserId()),
                 hashIterations
                 ).toHex();
     }

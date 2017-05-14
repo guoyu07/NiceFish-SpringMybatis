@@ -20,6 +20,18 @@
     <sql id="Base_Column_List">
         USER_ID, USER_NAME, PASSWORD, REAL_NAME, NICK_NAME, E_NAME, QQ, EMAIL, CELL_PHONE, USER_DESC, UP_ID, STATUS, REG_TIME, LASTLOGIN_TIME
     </sql>
+
+    <select id="getByUser" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+          FROM user
+        <where>
+            <if test="user.userName != null">
+                email = #{user.userName}
+                or user_name = #{user.userName}
+            </if>
+        </where>
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" /> from user where USER_ID = #{userId,jdbcType=VARCHAR}
