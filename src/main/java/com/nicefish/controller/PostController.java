@@ -5,6 +5,7 @@ import com.nicefish.po.POUser;
 import com.nicefish.service.PostService;
 import com.nicefish.utils.SessionConsts;
 import com.nicefish.vo.VONewPost;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class PostController extends BaseController{
 	@Autowired
 	private PostService postService;
 
-//	@RequiresPermissions("auth:login")
+	@RequiresPermissions({"auth:login"})
 	@RequestMapping("/getPostByUserId/{userId}/{currentPage}")
 	public Map<String,Object> getPostByUserId(@PathVariable String userId, @PathVariable String currentPage){
 		return this.buildResponse(postService.getPostByUserId(userId,currentPage)

@@ -1,8 +1,15 @@
 package com.nicefish.auth;
 
 import com.nicefish.po.POUser;
+import com.nicefish.service.UserService;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -12,7 +19,20 @@ import org.apache.shiro.util.ByteSource;
  *
  * @author zhongzhong
  */
-public class FormRealm extends AbstractRealm {
+public class FormRealm extends AuthorizingRealm {
+
+    @Resource
+    UserService userService;
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token !=null && token instanceof UsernamePasswordToken;
+    }
+
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        return new SimpleAuthorizationInfo();
+    }
 
     /**
      * 认证
@@ -42,4 +62,5 @@ public class FormRealm extends AbstractRealm {
                 getName()  //realm name
         );
     }
+
 }

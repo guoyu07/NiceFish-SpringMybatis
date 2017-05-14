@@ -1,5 +1,6 @@
 package com.nicefish.controller;
 
+import com.nicefish.auth.TokenUtils;
 import com.nicefish.exception.EmailConflictException;
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
@@ -30,6 +31,7 @@ public class AccessController extends BaseController {
 		user = this.userService.findByEmail(user.getEmail());
 
 		VOUserLogin userLogin = new VOUserLogin();
+		userLogin.setToken(TokenUtils.generate(user.getUserId()));
 		BeanUtils.copyProperties(userLogin,user);
 
 		return userLogin;

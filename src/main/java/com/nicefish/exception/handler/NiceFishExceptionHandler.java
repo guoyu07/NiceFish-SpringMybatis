@@ -5,6 +5,7 @@ import com.nicefish.exception.EmailConflictException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,13 @@ public class NiceFishExceptionHandler extends BaseController{
     public Object handlerAuthenticationException(AuthenticationException e){
         log.error("认证失败。",e);
         return this.ajaxFailureResponse("认证失败。");
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Object handlerUnauthorizedException(UnauthorizedException e){
+        log.error("没有访问权限。",e);
+        return this.ajaxFailureResponse("没有访问权限");
     }
 
     @ExceptionHandler(Exception.class)

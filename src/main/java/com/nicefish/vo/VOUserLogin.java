@@ -4,7 +4,16 @@ public class VOUserLogin {
 	private String userName;
 	private String email;
 	private String nickName;
+	private String token;
 	private boolean rememberMe;
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public String getNickName(){
 		return this.nickName;

@@ -49,11 +49,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		<property name="arguments" ref="securityManager"/>
 	</bean>
 
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
-	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-		<property name="securityManager" ref="securityManager"/>
-	</bean>
-
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 	<bean id="formRealm" class="com.nicefish.auth.FormRealm">
