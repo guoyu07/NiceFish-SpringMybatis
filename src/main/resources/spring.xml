@@ -14,11 +14,18 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
 		<property name="loginUrl" value="/access/login"/>
+		<property name="filters">
+			<map>
+				<entry key="acf">
+					<bean class="com.nicefish.auth.AccessControlFilter"/>
+				</entry>
+			</map>
+		</property>
 		<property name="filterChainDefinitions">
 			<value>
 				/access/login=anon
 				/access/register=anon
-				/** = anon
+				/** = acf
 			</value>
 		</property>
 	</bean>
@@ -28,8 +35,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		<property name="hashIterations" value="1024"/>
 	</bean>
 
-	<bean id="defaultSessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager"/>
-
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realms">
 			<list>
@@ -37,7 +42,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 				<ref bean="jwtRealm"/>
 			</list>
 		</property>
-		<property name="sessionManager" ref="defaultSessionManager"/>
 	</bean>
 
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

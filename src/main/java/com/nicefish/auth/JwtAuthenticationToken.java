@@ -13,6 +13,11 @@ public class JwtAuthenticationToken implements AuthenticationToken {
     private String userId;
     private String token;
 
+    public JwtAuthenticationToken(String userId, String token) {
+        this.userId = userId;
+        this.token = token;
+    }
+
     public String getUserId() {
         return userId;
     }

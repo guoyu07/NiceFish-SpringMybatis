@@ -23,10 +23,10 @@ public class FormRealm extends AbstractRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String userName = String.valueOf(authenticationToken.getPrincipal());
-        POUser user = userService.findByEmail(userName);
+        String username = String.valueOf(authenticationToken.getPrincipal());
+        POUser user = userService.findByEmail(username);
         if (user == null) {
-            user = userService.findByUserName(userName);
+            user = userService.findByUserName(username);
         }
 
         if (user == null) {

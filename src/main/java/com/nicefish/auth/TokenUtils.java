@@ -15,9 +15,9 @@ import java.security.Key;
 public class TokenUtils {
     private static final Key key = MacProvider.generateKey();
 
-    public static String generate(String username) {
+    public static String generate(String userId) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(userId)
                 .signWith(SignatureAlgorithm.HS512, key)
                 .compact();
     }

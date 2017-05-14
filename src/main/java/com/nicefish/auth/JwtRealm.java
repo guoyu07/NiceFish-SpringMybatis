@@ -33,6 +33,6 @@ public class JwtRealm extends AbstractRealm {
         //验证token是否有效
         tokenService.validateToken(jwtToken.getToken());
 
-        return new SimpleAccount(jwtToken.getPrincipal(), jwtToken.getCredentials(), getName());
+        return new SimpleAccount(jwtToken.getUserId(), jwtToken.getToken(), getName());
     }
 }

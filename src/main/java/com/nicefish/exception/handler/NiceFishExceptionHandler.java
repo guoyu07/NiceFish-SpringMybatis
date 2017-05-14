@@ -2,6 +2,7 @@ package com.nicefish.exception.handler;
 
 import com.nicefish.controller.BaseController;
 import com.nicefish.exception.EmailConflictException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
@@ -37,6 +38,13 @@ public class NiceFishExceptionHandler extends BaseController{
     public Object handlerEmailConflictException(EmailConflictException e){
         log.error("邮箱已经被注册了。",e);
         return this.ajaxFailureResponse("邮箱已经被注册了。");
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Object handlerAuthenticationException(AuthenticationException e){
+        log.error("认证失败。",e);
+        return this.ajaxFailureResponse("认证失败。");
     }
 
     @ExceptionHandler(Exception.class)

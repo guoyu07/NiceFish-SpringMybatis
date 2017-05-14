@@ -19,6 +19,7 @@ public class PostController extends BaseController{
 	@Autowired
 	private PostService postService;
 
+//	@RequiresPermissions("auth:login")
 	@RequestMapping("/getPostByUserId/{userId}/{currentPage}")
 	public Map<String,Object> getPostByUserId(@PathVariable String userId, @PathVariable String currentPage){
 		return this.buildResponse(postService.getPostByUserId(userId,currentPage)
