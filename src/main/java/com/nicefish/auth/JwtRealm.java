@@ -30,6 +30,9 @@ public class JwtRealm extends AuthorizingRealm {
     @Resource
     private RoleService roleService;
 
+    @Resource
+    private UserService userService;
+
     @Override
     public boolean supports(AuthenticationToken token) {
         return token != null && token instanceof JwtAuthenticationToken;
@@ -55,6 +58,11 @@ public class JwtRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtAuthenticationToken jwtToken = (JwtAuthenticationToken) token;
 
+        if(StringUtils.isNotEmpty(token.getUserId())){
+            this.userService.findById(token.getUserId());
+        }else{
+            //抛出账号不存在的异常
+        }
         //验证token是否有效
         tokenService.validateToken(jwtToken.getToken());
 
