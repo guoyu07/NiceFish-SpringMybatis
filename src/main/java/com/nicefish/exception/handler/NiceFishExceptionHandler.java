@@ -1,9 +1,7 @@
 package com.nicefish.exception.handler;
 
 import com.nicefish.controller.BaseController;
-import com.nicefish.exception.EmailConflictException;
-import com.nicefish.exception.PasswordRequiredException;
-import com.nicefish.exception.UserNameRequiredException;
+import com.nicefish.exception.*;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -22,6 +20,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class NiceFishExceptionHandler extends BaseController{
     private static Logger log = LoggerFactory.getLogger(NiceFishExceptionHandler.class);
 
+    @ExceptionHandler(InvalidTokenException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Object handlerTokenExpiredException(TokenExpiredException e){
+        log.error("token已经过期.",e);
+        return this.ajaxFailureResponse("token已经过期。");
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Object handlerInvalidTokenException(InvalidTokenException e){
+        log.error("token无效.",e);
+        return this.ajaxFailureResponse("token无效。");
+    }
 
     @ExceptionHandler(UserNameRequiredException.class)
     @ResponseStatus(HttpStatus.OK)

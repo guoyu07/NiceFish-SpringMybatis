@@ -1,6 +1,8 @@
 package com.nicefish.auth;
 
 import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -12,6 +14,8 @@ import java.io.IOException;
  * Created by zhongzhong on 2017/5/14.
  */
 public class AccessControlFilter extends org.apache.shiro.web.filter.AccessControlFilter {
+    private static final Logger log = LoggerFactory.getLogger(AccessControlFilter.class);
+
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
     @Override
@@ -28,9 +32,11 @@ public class AccessControlFilter extends org.apache.shiro.web.filter.AccessContr
 
         try {
             JwtAuthenticationToken jwtToken = new JwtAuthenticationToken(userId, token);
+
             getSubject(request, response).login(jwtToken);
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
+            String msg = userId + ":登录失败，token:" + token;
+            log.error(msg);
             loginFail(response);
             return false;
         }

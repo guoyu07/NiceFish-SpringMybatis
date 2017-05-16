@@ -2,10 +2,9 @@ package com.nicefish.auth;
 
 import com.nicefish.service.RoleService;
 import com.nicefish.service.TokenService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAccount;
+import com.nicefish.service.UserService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -58,11 +57,12 @@ public class JwtRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtAuthenticationToken jwtToken = (JwtAuthenticationToken) token;
 
-        if(StringUtils.isNotEmpty(token.getUserId())){
-            this.userService.findById(token.getUserId());
-        }else{
+        if(StringUtils.isEmpty(jwtToken.getUserId())){
             //抛出账号不存在的异常
+            throw new UnknownAccountException();
         }
+        this.userService.findById(jwtToken.getUserId());
+
         //验证token是否有效
         tokenService.validateToken(jwtToken.getToken());
 
