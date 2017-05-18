@@ -39,7 +39,7 @@ public class AccessController extends BaseController {
         this.userService.ensureUser(user);
         SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getUserName(),user.getPassword()));
 
-        userLogin.setToken(TokenUtils.generate(user.getUserId()));
+        userLogin.setToken(TokenUtils.generate(user.getUserId(),"id",30*60*1000));
         BeanUtils.copyProperties(userLogin, user);
         return userLogin;
 
