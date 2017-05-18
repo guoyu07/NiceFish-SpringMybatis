@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class NiceFishExceptionHandler extends BaseController{
     private static Logger log = LoggerFactory.getLogger(NiceFishExceptionHandler.class);
 
-    @ExceptionHandler(InvalidTokenException.class)
+    @ExceptionHandler(TokenExpiredException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Object handlerTokenExpiredException(TokenExpiredException e){
         log.error("token已经过期.",e);
