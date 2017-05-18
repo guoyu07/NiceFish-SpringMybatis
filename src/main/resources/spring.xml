@@ -25,6 +25,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 				/access/login=anon
 				/access/register=anon
 				/post/**=anon
+				/=anon
 				/** = acf
 			</value>
 		</property>

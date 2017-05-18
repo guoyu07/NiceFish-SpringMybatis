@@ -35,7 +35,7 @@ public class AccessControlFilter extends org.apache.shiro.web.filter.AccessContr
 
             getSubject(request, response).login(jwtToken);
         } catch (Exception e) {
-            String msg = userId + ":登录失败，token:" + token;
+            String msg = "Token登录失败,userId:"+userId + ",token:" + token;
             log.error(msg);
             loginFail(response);
             return false;
