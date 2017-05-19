@@ -7,6 +7,7 @@ import com.nicefish.exception.UserNameRequiredException;
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
 import com.nicefish.utils.SessionConsts;
+import com.nicefish.utils.UuidUtils;
 import com.nicefish.vo.VOUserLogin;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +40,7 @@ public class AccessController extends BaseController {
         this.userService.ensureUser(user);
         SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getUserName(),user.getPassword()));
 
-        userLogin.setToken(TokenUtils.generate("id",user.getUserId(),"issuer",30*60*1000));
+        userLogin.setToken(TokenUtils.generate(UuidUtils.generate(),user.getUserId(),"issuer",30*60*1000));
         BeanUtils.copyProperties(userLogin, user);
         return userLogin;
 

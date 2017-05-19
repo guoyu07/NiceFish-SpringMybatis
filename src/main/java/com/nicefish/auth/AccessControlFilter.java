@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by zhongzhong on 2017/5/14.
+ * <p>访问控制器过滤器</p>
+ * @author zhongzhong
  */
 public class AccessControlFilter extends org.apache.shiro.web.filter.AccessControlFilter {
     private static final Logger log = LoggerFactory.getLogger(AccessControlFilter.class);
