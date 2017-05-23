@@ -19,6 +19,8 @@ public class AccessControlFilter extends org.apache.shiro.web.filter.AccessContr
 
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
+    private static final String USER_ID = "userId";
+
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         return false;
@@ -28,7 +30,7 @@ public class AccessControlFilter extends org.apache.shiro.web.filter.AccessContr
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest req = WebUtils.toHttp(request);
 
-        String userId = req.getParameter("userId");
+        String userId = req.getParameter(USER_ID);
         String token = req.getHeader(AUTHORIZATION_HEADER);
 
         try {

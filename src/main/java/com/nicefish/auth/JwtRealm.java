@@ -1,5 +1,6 @@
 package com.nicefish.auth;
 
+import com.nicefish.service.PermissionService;
 import com.nicefish.service.RoleService;
 import com.nicefish.service.TokenService;
 import com.nicefish.service.UserService;
@@ -30,6 +31,9 @@ public class JwtRealm extends AuthorizingRealm {
     private RoleService roleService;
 
     @Resource
+    private PermissionService permissionService;
+
+    @Resource
     private UserService userService;
 
     @Override
@@ -49,7 +53,11 @@ public class JwtRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Set<String> roles = roleService.findRoles(userId);
+        Set<String> permissions = permissionService.findPermissions();
+        //登录成功之后，都有该权限
+        permissions.add("auth:login");
         authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 

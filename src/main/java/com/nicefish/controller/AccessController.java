@@ -37,8 +37,8 @@ public class AccessController extends BaseController {
             throw new PasswordRequiredException();
         }
         VOUserLogin userLogin = new VOUserLogin();
-        this.userService.ensureUser(user);
         SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getUserName(),user.getPassword()));
+        this.userService.ensureUser(user);
 
         userLogin.setToken(TokenUtils.generate(UuidUtils.generate(),user.getUserId(),"issuer",30*60*1000));
         BeanUtils.copyProperties(userLogin, user);
@@ -64,6 +64,7 @@ public class AccessController extends BaseController {
 
         VOUserLogin userLogin = new VOUserLogin();
         BeanUtils.copyProperties(userLogin, poUser);
+        userLogin.setToken(TokenUtils.generate(UuidUtils.generate(),user.getUserId(),"issuer",30*60*1000));
         return userLogin;
     }
 }

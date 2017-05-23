@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	public void ensureUser(POUser user) throws Exception {
 		POUser poUser = this.userMapper.getByUser(user);
 		if(poUser != null){
-			user.setUserId(poUser.getUserId());
+			BeanUtils.copyProperties(user,poUser);
 		}
 	}
 

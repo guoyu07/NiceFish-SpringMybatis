@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.nicefish.dao.POPermissionMapper;
 import com.nicefish.service.PermissionService;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
 	private POPermissionMapper permissionMapper;
@@ -16,5 +19,10 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired
 	public void setPermissionMapper(POPermissionMapper permissionMapper) {
 		this.permissionMapper = permissionMapper;
+	}
+
+	@Override
+	public Set<String> findPermissions() {
+		return new HashSet<>();
 	}
 }
