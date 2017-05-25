@@ -6,35 +6,10 @@
 
 #用法
 
-这是一个MyEclipse2014工程，最简单的SpringMVC+MyBatis，所有依赖的jar包都提交上来了，不依赖任何其它内容。
-
-
-- 克隆本项目的代码
-
-- 用MyEclipse2014或更高版本import项目，就像这样：
-
-![视频教程截图](docs/imgs/1.png)
-
-- 在你本地的mysql里面执行docs/nicefish.sql建好库
-
-- 修改src/config.properties里面的数据库连接路径和用户名密码
-
-- 重新编译项目，然后发布到你自己的Tomcat里面去
-
-- 打开你的浏览器，访问你的项目路径
-
-请不要问我为什么用MyEclipse，因为：
-
-如果我用NetBeans，你们会问我为什么不用MyEclipse？为什么不用Eclipse？为什么不用IDEA？
-
-如果我用IDEA，你们会问我为什么不用MyEclipse？为什么不用Eclipse？为什么不用NetBeans？
-
-如果我用Eclipse，你们会问我为什么不用MyEclipse？为什么不用NetBeans？为什么不用IDEA？
-
-如果你不习惯用MyEclipse，你可以直说，然后自己尝试去把代码迁移到其它IDE里面去。
+这个分支用的是maven的组织方式，使用的是idea，当然你也可以导入到eclipse或者myeclipse中玩，随便你啊。
+这个分支，前后端已经完全分离啦，对应的NiceFish项目的分支为nicefish。
+对了，这里你要自己配置前端的nginx服务器的代理，这里有篇文章你照着做就行了：https://my.oschina.net/zhongzhong5/blog/894186
 
 # 说明
-
-这个项目的目的是示范最新版本的Angular如何与基于SpringMVC的后台服务进行对接。我会逐步把功能丰富起来，目前我一个人在做，加上要出去讲课、要写文章啥的，进度会慢一些。
 
 如果你有兴趣一起来玩儿，请联系我。
