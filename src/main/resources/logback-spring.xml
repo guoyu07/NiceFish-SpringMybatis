@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<!-- 负责写日志,控制台日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5level [%thread] -- %logger [%file:%line]: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 滚动记录文件 按日滚动 -->
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/data/logs/oss.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/logs/oss-%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5level [%thread] -- %logger [%file:%line]: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.nicefish" level="debug"></logger>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLING" />
+	</root>
+</configuration>
