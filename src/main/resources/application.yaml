@@ -9,10 +9,13 @@ spring:
     validationQuery: select 1
     
   jpa:
+    # 展示 sql
     show-sql: true
     hibernate: 
+      # 开发阶段使用 update。稳定后使用 none
       ddl-auto: update
 
   jackson: 
     serialization:
+      # 美化json输出
       indent_output: true
