@@ -2,7 +2,10 @@ package com.nicefish.auth;
 
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
+import com.nicefish.utils.PasswordUtil;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -56,11 +59,30 @@ public class FormRealm extends AuthorizingRealm {
             throw new LockedAccountException();
         }
         return new SimpleAuthenticationInfo(
-                user.getUserId(), //用户名
+                user.getUserName(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getUserId()),//salt=userId
+                ByteSource.Util.bytes(user.getUserName()),//salt=userName
                 getName()  //realm name
         );
     }
 
+    @Override
+    protected void assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) throws AuthenticationException {
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+        String tokenUserName=usernamePasswordToken.getUsername();
+        String tokenPassword=String.valueOf(usernamePasswordToken.getPassword());
+
+        POUser poUser=new POUser();
+        poUser.setUserName(tokenUserName);
+        poUser.setPassword(tokenPassword);
+        tokenPassword=PasswordUtil.encryptPassword(poUser);
+
+        String infoUserName=info.getPrincipals().toString();
+        String infoPassword=info.getCredentials().toString();
+
+        if(!tokenUserName.equals(infoUserName)||!tokenPassword.equals(infoPassword)){
+            String msg = "Submitted credentials for token [" + token + "] did not match the expected credentials.";
+            throw new IncorrectCredentialsException(msg);
+        }
+    }
 }

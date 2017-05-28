@@ -1,15 +1,17 @@
 package com.nicefish.controller;
 
-import com.nicefish.auth.TokenUtils;
+import com.nicefish.utils.PasswordUtil;
+import com.nicefish.utils.TokenUtil;
 import com.nicefish.exception.EmailConflictException;
 import com.nicefish.exception.PasswordRequiredException;
 import com.nicefish.exception.UserNameRequiredException;
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
 import com.nicefish.utils.SessionConsts;
-import com.nicefish.utils.UuidUtils;
+import com.nicefish.utils.UUidUtil;
 import com.nicefish.vo.VOUserLogin;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,22 +31,24 @@ public class AccessController extends BaseController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody POUser user) throws Exception {
+    public Object login(@RequestBody POUser poUser) throws Exception {
 
-        if(StringUtils.isEmpty(user.getUserName())){
+        if(StringUtils.isEmpty(poUser.getUserName())){
             throw new UserNameRequiredException();
         }
-        if(StringUtils.isEmpty(user.getPassword())){
+        if(StringUtils.isEmpty(poUser.getPassword())){
             throw new PasswordRequiredException();
         }
+        //TODO:这里需要处理登录异常
+
+        SecurityUtils.getSubject().login(new UsernamePasswordToken(poUser.getUserName(),poUser.getPassword()));
+
+        this.userService.ensureUser(poUser);
         VOUserLogin userLogin = new VOUserLogin();
-        SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getUserName(),user.getPassword()));
-        this.userService.ensureUser(user);
+        userLogin.setToken(TokenUtil.generate(UUidUtil.generate(),poUser.getUserId(),"issuer",30*60*1000));
+        BeanUtils.copyProperties(userLogin, poUser);
 
-        userLogin.setToken(TokenUtils.generate(UuidUtils.generate(),user.getUserId(),"issuer",30*60*1000));
-        BeanUtils.copyProperties(userLogin, user);
         return userLogin;
-
     }
 
     @RequestMapping(value = "/logout/{userId}", method = RequestMethod.GET)
@@ -55,16 +60,23 @@ public class AccessController extends BaseController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Object register(@RequestBody POUser poUser) throws Exception {
-        POUser user = this.userService.findByEmail(poUser.getEmail());
-        if (!Objects.isNull(user)) {
+        if (ObjectUtils.anyNotNull(this.userService.findByEmail(poUser.getEmail()))) {
             throw new EmailConflictException();
         }
-
+        poUser.setUserId(UUidUtil.generate());
+        //把email拷贝到userName，因为前端只给了email参数
+        poUser.setUserName(poUser.getEmail());
+        //把最后一次登录时间设置为系统当前时间
+        poUser.setLastLoginTime(new Date());
+        //密码再次加密
+        poUser.setPassword(PasswordUtil.encryptPassword(poUser));
         this.userService.insert(poUser);
 
         VOUserLogin userLogin = new VOUserLogin();
         BeanUtils.copyProperties(userLogin, poUser);
-        userLogin.setToken(TokenUtils.generate(UuidUtils.generate(),user.getUserId(),"issuer",30*60*1000));
+        //再次查询一下User，获得新用户在数据库中的userId
+        //user=this.userService.findByEmail(poUser.getEmail());
+        //userLogin.setToken(TokenUtil.generate(UUidUtil.generate(),user.getUserId(),"issuer",30*60*1000));
         return userLogin;
     }
 }

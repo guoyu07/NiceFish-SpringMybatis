@@ -1,4 +1,4 @@
-package com.nicefish.auth;
+package com.nicefish.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author zhongzhong
  */
-public class TokenUtils {
+public class TokenUtil {
     private static final String APP_KEY = "nicefish";
 
     public static String generate(String id,String subject, String issuer,long ttlMillis) {

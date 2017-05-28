@@ -3,15 +3,12 @@ package com.nicefish.service.impl;
 import com.nicefish.dao.POUserMapper;
 import com.nicefish.po.POUser;
 import com.nicefish.service.UserService;
-import com.nicefish.utils.PasswordHelper;
-import com.nicefish.utils.UuidUtils;
+import com.nicefish.utils.PasswordUtil;
+import com.nicefish.utils.UUidUtil;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Service("userService")
@@ -49,8 +46,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public int insert(POUser user) {
-		user.setUserId(UuidUtils.generate());
-		user.setPassword(PasswordHelper.encryptPassword(user));
 		return userMapper.insertSelective(user);
 	}
 	

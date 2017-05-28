@@ -1,6 +1,6 @@
 package com.nicefish.service.impl;
 
-import com.nicefish.auth.TokenUtils;
+import com.nicefish.utils.TokenUtil;
 import com.nicefish.exception.InvalidTokenException;
 import com.nicefish.exception.TokenExpiredException;
 import com.nicefish.service.TokenService;
@@ -30,7 +30,7 @@ public class TokenServiceImpl implements TokenService {
         }
 
         try{
-            Claims claims = TokenUtils.getClaims(token);
+            Claims claims = TokenUtil.getClaims(token);
 
             String userId = claims.getSubject();
 
