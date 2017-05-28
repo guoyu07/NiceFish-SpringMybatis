@@ -72,11 +72,6 @@ public class AccessController extends BaseController {
         poUser.setPassword(PasswordUtil.encryptPassword(poUser));
         this.userService.insert(poUser);
 
-        VOUserLogin userLogin = new VOUserLogin();
-        BeanUtils.copyProperties(userLogin, poUser);
-        //再次查询一下User，获得新用户在数据库中的userId
-        //user=this.userService.findByEmail(poUser.getEmail());
-        //userLogin.setToken(TokenUtil.generate(UUidUtil.generate(),user.getUserId(),"issuer",30*60*1000));
-        return userLogin;
+        return poUser;
     }
 }
