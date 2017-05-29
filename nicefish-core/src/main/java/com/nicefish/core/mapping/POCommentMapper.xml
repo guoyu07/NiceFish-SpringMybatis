@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nicefish.dao.POCommentMapper">
-    <resultMap id="BaseResultMap" type="com.nicefish.po.POComment">
+<mapper namespace="com.nicefish.core.dao.POCommentMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.core.po.POComment">
         <id column="COMMENT_ID" property="commentId" jdbcType="VARCHAR" />
         <result column="P_ID" property="pId" jdbcType="VARCHAR" />
         <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         <result column="POST_ID" property="postId" jdbcType="VARCHAR" />
         <result column="STATUS" property="status" jdbcType="INTEGER" />
     </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.nicefish.po.POComment" extends="BaseResultMap">
+    <resultMap id="ResultMapWithBLOBs" type="POComment" extends="BaseResultMap">
         <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
@@ -29,7 +29,7 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from comment where COMMENT_ID = #{commentId,jdbcType=VARCHAR}
     </delete>
-    <insert id="insertSelective" parameterType="com.nicefish.po.POComment">
+    <insert id="insertSelective" parameterType="POComment">
         insert into comment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="commentId != null">
@@ -96,7 +96,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.po.POComment">
+    <update id="updateByPrimaryKeySelective" parameterType="POComment">
         update comment
         <set>
             <if test="pId != null">

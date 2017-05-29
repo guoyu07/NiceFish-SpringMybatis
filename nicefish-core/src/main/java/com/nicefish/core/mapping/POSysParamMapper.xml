@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nicefish.dao.POSysParamMapper">
-    <resultMap id="BaseResultMap" type="com.nicefish.po.POSysParam">
+<mapper namespace="com.nicefish.core.dao.POSysParamMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.core.po.POSysParam">
         <id column="PARAM_KEY" property="paramKey" jdbcType="VARCHAR" />
         <result column="PARAM_VALUE" property="paramValue" jdbcType="VARCHAR" />
         <result column="PARAM_DESC" property="paramDesc" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from sys_params where PARAM_KEY = #{paramKey,jdbcType=VARCHAR}
     </delete>
-    <insert id="insertSelective" parameterType="com.nicefish.po.POSysParam">
+    <insert id="insertSelective" parameterType="POSysParam">
         insert into sys_params
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="paramKey != null">
@@ -41,7 +41,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.po.POSysParam">
+    <update id="updateByPrimaryKeySelective" parameterType="POSysParam">
         update sys_params
         <set>
             <if test="paramKey != null">
