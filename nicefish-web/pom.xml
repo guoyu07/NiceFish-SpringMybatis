@@ -19,12 +19,12 @@
         </dependency>
         <dependency>
             <groupId>com.nicefish</groupId>
-            <artifactId>nicefish-usermng</artifactId>
+            <artifactId>nicefish-user</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.nicefish</groupId>
-            <artifactId>nicefish-ordermng</artifactId>
+            <artifactId>nicefish-order</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>nicefish-common-utils</module>
-        <module>nicefish-usermng</module>
-        <module>nicefish-ordermng</module>
+        <module>nicefish-user</module>
+        <module>nicefish-order</module>
         <module>nicefish-bpm</module>
         <module>nicefish-web</module>
     </modules>

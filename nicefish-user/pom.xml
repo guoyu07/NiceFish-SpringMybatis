@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nicefish-ordermng</artifactId>
+    <artifactId>nicefish-user</artifactId>
     <packaging>jar</packaging>
-    <name>nicefish-ordermng</name>
+    <name>nicefish-user</name>
 </project>
