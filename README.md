@@ -24,7 +24,7 @@ NiceFish可以用来搭建个人Blog、微型SNS站点，或者用于学习Angul
 
 - 最顶层的NiceFish项目，这是总的父项目，它什么也不做，只是一个空的容器，用来容纳和管理外部的开源jar包，所有子maven module项目都依赖于它。
 - nicefish-bpm，这个子模块未来用来实现bpm相关的业务；
-- nicefish-common-utils，这个子模块用来放自己编写的一些工具类；
+- nicefish-common，这个子模块用来放自己编写的一些工具类；
 - nicefish-ordermng，这个子模块未来用来实现订单相关的业务；
 - nicefish-usermng，这个子模块用来实现用户和授权相关的业务，依赖于apache shiro框架；
 - nicefish-web，这是web入口，它会被打成war包，它依赖于以上所有模块打出来的jar包。

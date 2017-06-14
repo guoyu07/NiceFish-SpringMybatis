@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.nicefish</groupId>
-    <artifactId>NiceFish</artifactId>
+    <artifactId>nicefish</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>nicefish-common-utils</module>
+        <module>nicefish-common</module>
         <module>nicefish-user</module>
         <module>nicefish-order</module>
         <module>nicefish-bpm</module>
