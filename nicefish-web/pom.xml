@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>nicefish</artifactId>
+        <artifactId>NiceFish</artifactId>
         <groupId>com.nicefish</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -11,15 +11,21 @@
     <name>nicefish-web</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <jackson.version>2.8.8</jackson.version>
+        <shiro.version>1.3.2</shiro.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.nicefish</groupId>
-            <artifactId>nicefish-common</artifactId>
+            <artifactId>nicefish-common-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.nicefish</groupId>
-            <artifactId>nicefish-user</artifactId>
+            <artifactId>nicefish-auth</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -31,6 +37,16 @@
             <groupId>com.nicefish</groupId>
             <artifactId>nicefish-bpm</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
         </dependency>
     </dependencies>
     <build>

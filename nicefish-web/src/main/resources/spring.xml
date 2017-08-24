@@ -8,33 +8,22 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
 	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="com.nicefish.service.*" />
+	<context:component-scan base-package="com.nicefish.*.service.*" />
 
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager"/>
-		<property name="loginUrl" value="/access/login"/>
-		<property name="filters">
-			<map>
-				<entry key="acf">
-					<bean class="com.nicefish.auth.AccessControlFilter"/>
-				</entry>
-			</map>
-		</property>
-		<property name="filterChainDefinitions">
-			<value>
-				/access/login=anon
-				/access/register=anon
-				/post/**=anon
-				/=anon
-				/** = acf
-			</value>
-		</property>
+	<!-- 所有文件上传类型的请求都会被这个Resolver先处理 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
 	</bean>
 
 	<bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 		<property name="hashAlgorithmName" value="sha-512"/>
 		<property name="hashIterations" value="1024"/>
 	</bean>
+
+	<bean id="formRealm" class="com.nicefish.auth.shiro.FormRealm">
+		<property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+	</bean>
+	<bean id="jwtRealm" class="com.nicefish.auth.shiro.JwtRealm"/>
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realms">
@@ -43,17 +32,93 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 				<ref bean="jwtRealm"/>
 			</list>
 		</property>
+		<!-- 定义要使用的session管理器 -->
+		<property name="sessionManager" ref="sessionManager"/>
 	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/access/login"/>
+		<property name="filters">
+			<map>
+				<entry key="acf">
+					<bean class="com.nicefish.auth.shiro.AccessControlFilter"/>
+				</entry>
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/access/login=anon
+				/access/logout=anon
+				/access/register=anon
+				/post/**=anon
+				/comment/**=anon
+				/comment/newComment=acf
+				/comment/delComment/**=acf
+				/=anon
+				/file/uploadFile=anon
+				/** = anon
+			</value>
+		</property>
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
 		<property name="arguments" ref="securityManager"/>
 	</bean>
 
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-	<bean id="formRealm" class="com.nicefish.auth.FormRealm">
-		<property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+	<!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
+	<!-- the lifecycleBeanProcessor has run: -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
 	</bean>
-	<bean id="jwtRealm" class="com.nicefish.auth.JwtRealm"/>
+
+	<!-- 定义Session ID生成管理器 -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator" />
+
+	<!-- 配置Session DAO的操作处理 -->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<!-- 设置session缓存的名字，这个名字可以任意 -->
+		<property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+		<!-- 定义该Session DAO操作中所使用的ID生成器 -->
+		<property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
+
+	<!-- 配置需要向Cookie中保存数据的配置模版 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- 在Tomcat运行下默认使用的Cookie的名字为JSESSIONID -->
+		<constructor-arg value="JSESSIONID"/>
+		<!-- 保证该系统不会受到跨域的脚本操作 -->
+		<property name="httpOnly" value="true"/>
+		<!-- 定义Cookie的过期时间，单位为秒，如果设置为-1表示浏览器关闭，则Cookie消失 -->
+		<property name="maxAge" value="1800000"/>
+	</bean>
+
+	<!-- 会话验证调度器，每30分钟执行一次验证 -->
+	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+		<property name="interval" value="1800000"/>
+		<property name="sessionManager" ref="sessionManager"/>
+	</bean>
+
+	<!-- 定义会话管理器的操作 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 定义的是全局的session会话超时时间，此操作会覆盖web.xml文件中的超时时间配置 -->
+		<property name="globalSessionTimeout" value="1800000"/>
+		<!-- 删除所有无效的Session对象，此时的session被保存在了内存里面 -->
+		<property name="deleteInvalidSessions" value="true"/>
+		<!-- 定义要使用的无效的Session定时调度器 -->
+		<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+		<!-- 需要让此session可以使用该定时调度器进行检测 -->
+		<property name="sessionValidationSchedulerEnabled" value="true"/>
+		<!-- 定义Session可以进行序列化的工具类 -->
+		<property name="sessionDAO" ref="sessionDAO"/>
+		<!-- 所有的session一定要将id设置到Cookie之中，需要提供有Cookie的操作模版 -->
+		<property name="sessionIdCookie" ref="sessionIdCookie"/>
+		<!-- 定义sessionIdCookie模版可以进行操作的启用 -->
+		<property name="sessionIdCookieEnabled" value="true"/>
+	</bean>
+
 </beans>

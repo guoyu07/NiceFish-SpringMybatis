@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nicefish.web.dao.POCommentMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.web.po.POComment">
+        <id column="COMMENT_ID" property="commentId" jdbcType="VARCHAR" />
+        <result column="P_ID" property="pId" jdbcType="VARCHAR" />
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="COMMENT_IP" property="commentIp" jdbcType="VARCHAR" />
+        <result column="COMMENT_TIME" property="commentTime" jdbcType="TIMESTAMP" />
+        <result column="POST_ID" property="postId" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.nicefish.web.po.POComment" extends="BaseResultMap">
+        <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        COMMENT_ID, P_ID, USER_ID, USER_NAME, NICK_NAME, EMAIL,COMMENT_IP, COMMENT_TIME, POST_ID, STATUS
+    </sql>
+    <sql id="Blob_Column_List">
+        CONTENT
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" /> ,
+        <include refid="Blob_Column_List" /> from comment where COMMENT_ID = #{commentId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from comment where COMMENT_ID = #{commentId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insertSelective" parameterType="com.nicefish.web.po.POComment">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                COMMENT_ID,
+            </if>
+            <if test="pId != null">
+                P_ID,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="userName != null">
+                USER_NAME,
+            </if>
+            <if test="nickName != null">
+                NICK_NAME,
+            </if>
+            <if test="email != null">
+                EMAIL,
+            </if>
+            <if test="commentIp != null">
+                COMMENT_IP,
+            </if>
+            <if test="commentTime != null">
+                COMMENT_TIME,
+            </if>
+            <if test="postId != null">
+                POST_ID,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                #{commentId,jdbcType=VARCHAR},
+            </if>
+            <if test="pId != null">
+                #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="commentIp != null">
+                #{commentIp,jdbcType=VARCHAR},
+            </if>
+            <if test="commentTime != null">
+                #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="postId != null">
+                #{postId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.web.po.POComment">
+        update comment
+        <set>
+            <if test="pId != null">
+                P_ID = #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                USER_NAME = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                NICK_NAME = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="commentIp != null">
+                COMMENT_IP = #{commentIp,jdbcType=VARCHAR},
+            </if>
+            <if test="commentTime != null">
+                COMMENT_TIME = #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="postId != null">
+                POST_ID = #{postId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where COMMENT_ID = #{commentId,jdbcType=VARCHAR}
+    </update>
+    <select id="findByPostId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" /> ,
+        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0 order by COMMENT_TIME desc 
+    </select>
+    <select id="findByPostIdAndPage" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" /> ,
+        <include refid="Blob_Column_List" /> from comment where POST_ID = #{postId,jdbcType=VARCHAR} and STATUS != 0 order by COMMENT_TIME desc limit #{beginRow},#{pageSize}
+    </select>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) as TOTAL_NUM 
+        from comment 
+        where POST_ID = #{postId,jdbcType=VARCHAR}
+        and STATUS != 0
+    </select>
+</mapper>

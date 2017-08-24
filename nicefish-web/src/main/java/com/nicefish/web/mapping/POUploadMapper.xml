@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nicefish.web.dao.POUploadMapper">
+    <resultMap id="BaseResultMap" type="com.nicefish.web.po.POUpload">
+        <id column="UP_ID" property="upId" jdbcType="VARCHAR" />
+        <result column="UP_TIME" property="upTime" jdbcType="TIMESTAMP" />
+        <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+        <result column="FILE_TYPE" property="fileType" jdbcType="VARCHAR" />
+        <result column="FILE_WIDTH" property="fileWidth" jdbcType="INTEGER" />
+        <result column="FILE_HEIGHT" property="fileHeight" jdbcType="INTEGER" />
+        <result column="FILE_SIZE" property="fileSize" jdbcType="REAL" />
+        <result column="DISPLAY_ORDER" property="displayOrder" jdbcType="INTEGER" />
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <result column="FILE_MODULE" property="fileModule" jdbcType="INTEGER" />
+        <result column="FILE_DESC" property="fileDesc" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        UP_ID, UP_TIME, FILE_NAME, FILE_TYPE, FILE_WIDTH, FILE_HEIGHT, FILE_SIZE, DISPLAY_ORDER, USER_ID, FILE_MODULE, FILE_DESC
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" /> from upload where UP_ID = #{upId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from upload where UP_ID = #{upId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insertSelective" parameterType="com.nicefish.web.po.POUpload">
+        insert into upload
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="upId != null">
+                UP_ID,
+            </if>
+            <if test="upTime != null">
+                UP_TIME,
+            </if>
+            <if test="fileName != null">
+                FILE_NAME,
+            </if>
+            <if test="fileType != null">
+                FILE_TYPE,
+            </if>
+            <if test="fileWidth != null">
+                FILE_WIDTH,
+            </if>
+            <if test="fileHeight != null">
+                FILE_HEIGHT,
+            </if>
+            <if test="fileSize != null">
+                FILE_SIZE,
+            </if>
+            <if test="displayOrder != null">
+                DISPLAY_ORDER,
+            </if>
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="fileModule != null">
+                FILE_MODULE,
+            </if>
+            <if test="fileDesc != null">
+                FILE_DESC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="upId != null">
+                #{upId,jdbcType=VARCHAR},
+            </if>
+            <if test="upTime != null">
+                #{upTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fileName != null">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileWidth != null">
+                #{fileWidth,jdbcType=INTEGER},
+            </if>
+            <if test="fileHeight != null">
+                #{fileHeight,jdbcType=INTEGER},
+            </if>
+            <if test="fileSize != null">
+                #{fileSize,jdbcType=REAL},
+            </if>
+            <if test="displayOrder != null">
+                #{displayOrder,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileModule != null">
+                #{fileModule,jdbcType=INTEGER},
+            </if>
+            <if test="fileDesc != null">
+                #{fileDesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nicefish.web.po.POUpload">
+        update upload
+        <set>
+            <if test="upTime != null">
+                UP_TIME = #{upTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fileName != null">
+                FILE_NAME = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileWidth != null">
+                FILE_WIDTH = #{fileWidth,jdbcType=INTEGER},
+            </if>
+            <if test="fileHeight != null">
+                FILE_HEIGHT = #{fileHeight,jdbcType=INTEGER},
+            </if>
+            <if test="fileSize != null">
+                FILE_SIZE = #{fileSize,jdbcType=REAL},
+            </if>
+            <if test="displayOrder != null">
+                DISPLAY_ORDER = #{displayOrder,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileModule != null">
+                FILE_MODULE = #{fileModule,jdbcType=INTEGER},
+            </if>
+            <if test="fileDesc != null">
+                FILE_DESC = #{fileDesc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where UP_ID = #{upId,jdbcType=VARCHAR}
+    </update>
+</mapper>

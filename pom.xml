@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.nicefish</groupId>
-    <artifactId>nicefish</artifactId>
+    <artifactId>NiceFish</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>nicefish-common</module>
-        <module>nicefish-user</module>
+        <module>nicefish-common-utils</module>
+        <module>nicefish-auth</module>
         <module>nicefish-order</module>
         <module>nicefish-bpm</module>
         <module>nicefish-web</module>
@@ -101,12 +101,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.31</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.4</version>
@@ -123,9 +117,7 @@
             <version>1.0.29</version>
         </dependency>
 
-
-
-        <!-- Utils -->
+        <!-- Apache Commons -->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
@@ -140,6 +132,27 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <!-- Apache Shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
         </dependency>
 
         <dependency>
@@ -166,19 +179,6 @@
             <artifactId>mail</artifactId>
             <version>1.4.6</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-
-
 
         <dependency>
             <groupId>javax.servlet</groupId>
