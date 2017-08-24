@@ -37,7 +37,7 @@ NiceFish是一个系列教学项目，都是Angular这个技术栈。
 - 第一步：克隆此项目的代码。
 - 第二步：在IDEA中导入此项目并配置好Tomcat，如果你不知道如何操作，请点击这个链接，里面有详细的步骤http://www.thinksaas.cn/topics/0/685/685545.html 。
 - 第三步：建库，sql脚本在docs/sqls目录下，推荐使用最新版本的mysql或者MariaDB。
-- 第四步：配置并启动nginx，把nginx的静态资源目录指向纯前端项目NiceFish的dist目录，如果您不知道如何配置，请参考docs目录下的nginx.conf文件。关于NiceFish纯前端项目的构建过程，请查看项目对应的README。再次强调，能与后端服务对接的代码位于NiceFish项目的nicefish分支上！
+- 第四步：配置并启动nginx，把nginx的静态资源目录指向纯前端项目NiceFish的dist目录，如果您不知道如何配置，请参考docs目录下的nginx.conf文件。关于NiceFish纯前端项目的构建过程，请查看项目对应的README。再次强调，能与后端服务对接的代码位于NiceFish项目的nicefish分支上！https://gitee.com/mumu-osc/NiceFish
 - 第五步：在IDEA中启动Tomcat服务器，打开你的浏览器访问http://127.0.0.1，就可以看到界面了。
 
 截图示意如下：
