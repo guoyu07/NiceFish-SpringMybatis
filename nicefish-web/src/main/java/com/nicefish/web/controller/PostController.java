@@ -22,15 +22,36 @@ public class PostController extends BaseController{
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping("/getPostByUserId/{userId}/{currentPage}")
-	public Map<String,Object> getPostByUserId(@PathVariable String userId, @PathVariable String currentPage){
+	@RequestMapping("/getPostListByUserId/{currentPage}")
+	public Map<String,Object> getPostListByUserId(@PathVariable String currentPage,HttpSession session){
+		//TODO:需要定义一个切面来校验Session里面时候有用户对象
+		//校验用户是否已经登录
+		if(null==session.getAttribute(SessionConsts.UserInfo)){
+			return this.ajaxFailureResponse("请先登录");
+		}
+
+		POUser poUser=(POUser) session.getAttribute(SessionConsts.UserInfo);
+		String userId=poUser.getUserId();
+
 		return this.buildResponse(postService.getPostByUserId(userId,currentPage)
-				,postService.countByUserId(userId));
+				,postService.selectCountByUserId(userId));
 	}
 
-	@RequestMapping(value = "/getPostListByPage/{currentPage}", method = RequestMethod.GET)
-	public List<POPost> getPostListByPage(@PathVariable int currentPage) throws Exception{
-		Session session= SecurityUtils.getSubject().getSession();
+	@RequestMapping(value = "/getPagerParamByUserId", method = RequestMethod.GET)
+	public Map<String,Object> getPagerParamByUserId(HttpSession session) throws Exception{
+		//校验用户是否已经登录
+		if(null==session.getAttribute(SessionConsts.UserInfo)){
+			return this.ajaxFailureResponse("请先登录");
+		}
+
+		POUser poUser=(POUser) session.getAttribute(SessionConsts.UserInfo);
+		String userId=poUser.getUserId();
+
+		return postService.getPagerParamByUserId(userId);
+	}
+
+	@RequestMapping(value = "/getPostList/{currentPage}", method = RequestMethod.GET)
+	public List<POPost> getPostList(@PathVariable int currentPage) throws Exception{
 		List<POPost> poPostList=postService.getPostListByPage(currentPage+"");
 		return poPostList;
     }
@@ -41,7 +62,7 @@ public class PostController extends BaseController{
 		String totalCount=postService.getTotalPages();
 		return totalCount;
     }
-	
+
 	@RequestMapping(value = "/getTotalItemsNum", method = RequestMethod.GET)
 	public String getTotalItemsNum() throws Exception{
 		String totalCount=postService.getTotalItemsNum();
@@ -52,10 +73,14 @@ public class PostController extends BaseController{
 	public Map<String,Object> getPagerParam() throws Exception{
 		return postService.getPagerParam();
     }
-	
+
+	/**
+	 * 文章点击数自动加一
+	 * @param postId
+	 * @return
+	 */
 	@RequestMapping(value = "/postdetail/{postId}", method = RequestMethod.GET)
 	public POPost getPostById(@PathVariable("postId")String postId) {
-		//点击数自动加一
 		postService.readTimesPlusOne(postId);
         return postService.getPostById(postId);
     }

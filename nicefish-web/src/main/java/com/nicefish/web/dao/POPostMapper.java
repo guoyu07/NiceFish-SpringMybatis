@@ -19,7 +19,7 @@ public interface POPostMapper extends BaseMapper<POPost, String> {
 
     List<POPost> getPostByUserId(@Param("userId") String userId, @Param("start") int start, @Param("limit") int limit);
 
-	Long countByUserId(@Param("userId") String userId);
+	int selectCountByUserId(@Param("userId") String userId);
 
 	void readTimesPlusOne(@Param("postId") String postId);
 

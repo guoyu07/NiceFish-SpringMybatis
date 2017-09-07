@@ -17,28 +17,21 @@ public interface PostService {
 
 	List<POPost> getPostByTitle(String postTitle);
 
-	String newPost(VONewPost voNewPost) throws IllegalAccessException,
-			InvocationTargetException;
+	String newPost(VONewPost voNewPost) throws IllegalAccessException,InvocationTargetException;
 
 	int deleteById(String postId);
 
 	String getTotalPages();
-	
+
 	String getTotalItemsNum();
-	
+
 	Map<String,Object> getPagerParam();
 
-	/**
-	 * <p>
-	 *     根据用户ID查询文章
-	 * </p>
-	 * @param userId String 用户ID
-	 * @param currentPage String 当前页
-	 * @return List 文章集合
-	 */
+	Map<String,Object> getPagerParamByUserId(String userId);
+
     List<POPost> getPostByUserId(String userId, String currentPage);
 
-	Long countByUserId(String userId);
+	int selectCountByUserId(String userId);
 
 	void readTimesPlusOne(String postId);
 

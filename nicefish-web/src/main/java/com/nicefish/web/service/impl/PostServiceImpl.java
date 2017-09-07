@@ -92,12 +92,32 @@ public class PostServiceImpl implements PostService {
 	public Map<String,Object> getPagerParam() {
 		int totalCount=postMapper.selectCount();
 		
-		POSysParam poSysParam=sysParamService.findByParamKey("POST_PAGE_NUM");
-		String pageSize=poSysParam.getParamValue();
+		POSysParam poSysParam1=sysParamService.findByParamKey("POST_PAGE_NUM");
+		String pageSize=poSysParam1.getParamValue();
+
+		POSysParam poSysParam2=sysParamService.findByParamKey("POST_MAX_PAGE_SIZE");
+		String maxPageSize=poSysParam2.getParamDesc();
 		
 		Map<String,Object> result=new HashMap<String,Object>();
 		result.put("itemsPerPage", pageSize);
 		result.put("totalItems", totalCount);
+		result.put("maxPageSize", maxPageSize);
+		return result;
+	}
+
+	public Map<String,Object> getPagerParamByUserId(String userId) {
+		int totalCount=postMapper.selectCountByUserId(userId);
+
+		POSysParam poSysParam1=sysParamService.findByParamKey("MNG_POST_PAGE_NUM");
+		String pageSize=poSysParam1.getParamValue();
+
+		POSysParam poSysParam2=sysParamService.findByParamKey("MNG_POST_MAX_PAGE_SIZE");
+		String maxPageSize=poSysParam2.getParamDesc();
+
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("itemsPerPage", pageSize);
+		result.put("totalItems", totalCount);
+		result.put("maxPageSize", maxPageSize);
 		return result;
 	}
 
@@ -112,8 +132,8 @@ public class PostServiceImpl implements PostService {
 		return postMapper.getPostByUserId(userId,start,limit);
 	}
 
-	public Long countByUserId(String userId) {
-		return postMapper.countByUserId(userId);
+	public int selectCountByUserId(String userId) {
+		return postMapper.selectCountByUserId(userId);
 	}
 
 	@Override
